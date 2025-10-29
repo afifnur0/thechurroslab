@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Churros Lab | Premium Dessert Experience</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2C1810;
+            --accent-color: #D4AF37;
+            --text-color: #333333;
+            --light-bg: #FAF9F6;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(45deg, rgba(44, 24, 16, 0.95), rgba(44, 24, 16, 0.8)),
+                        url('./images/churros-hero.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            color: white;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Menu Section */
+        .section {
+            padding: 120px 50px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .menu-image {
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            padding: 30px;
+        }
+
+        .menu-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .menu-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .menu-price {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1624371414361-e670edf3e533?w=1600') center/cover no-repeat;
+            opacity: 0.1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(45deg, #FAF9F6, #FFF);
+            text-align: center;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-text {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 50px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-content {
+                position: relative;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.3s ease;
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+                padding: 10px;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: var(--primary-color);
+                margin: 5px 0;
+                transition: 0.3s;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .menu-grid {
+                gap: 20px;
+            }
+
+            .menu-item {
+                margin: 0 10px;
+            }
+
+            .menu-name {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 20px;
+            }
+
+            .feature {
+                padding: 30px 20px;
+            }
+
+            /* Mobile Contact Section */
+            .contact-info {
+                padding: 20px;
+                margin: 0 20px;
+            }
+
+            /* Mobile Admin Buttons */
+            .admin-buttons {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+
+            .contact-button {
+                width: 100%;
+                text-align: center;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Improved touch targets for mobile */
+            .nav-links a,
+            .contact-button,
+            .social-links a {
+                padding: 12px 15px;
+                margin: 5px 0;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                margin: 10px 0;
+            }
+
+            .contact-info > div {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .contact-button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">The Churros Lab</div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Our Menu</a></li>
+                <li><a href="#features">Experience</a></li>
+                <li><a href="#contact">Order Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="hero-title">Discover The Art<br>of Perfect Churros</h1>
+            <p class="hero-subtitle">Menghadirkan churros premium dengan sentuhan modern dan inovatif, menciptakan pengalaman dessert yang tak terlupakan.</p>
+            <a href="#menu" class="contact-button">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <section class="section" id="menu">
+        <h2 class="section-title" data-aos="fade-up">Our Signature Collection</h2>
+        <div class="menu-grid">
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1624371414361-e670edf3e533?w=500" alt="Classic Gold" class="menu-image">
+                <div class="menu-content">
+                    <h3 class="menu-name">Classic Gold</h3>
+                    <p class="menu-description">Churros klasik yang dibalut dengan campuran gula kayu manis premium, disajikan dengan saus cokelat Belgium 72% yang mewah.</p>
+                    <p class="menu-price">Rp 35.000</p>
+                </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1624371414361-e670edf3e533?w=500" alt="Nutella Supreme" class="menu-image">
+                <div class="menu-content">
+                    <h3 class="menu-name">Nutella Supreme</h3>
+                    <p class="menu-description">Churros yang diisi dengan Nutella premium, ditaburi bubuk kakao, dan disajikan dengan saus hazelnut homemade.</p>
+                    <p class="menu-price">Rp 45.000</p>
+                </div>
+            </div>
+            <div class="menu-item" data-aos="fade-up" data-aos-delay="300">
+                <img src="https://images.unsplash.com/photo-1624371414361-e670edf3e533?w=500" alt="Salted Caramel" class="menu-image">
+                <div class="menu-content">
+                    <h3 class="menu-name">Salted Caramel</h3>
+                    <p class="menu-description">Churros dengan lapisan karamel garam laut Maldon, disajikan dengan saus vanilla bourbon dan taburan kacang almond.</p>
+                    <p class="menu-price">Rp 40.000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section features" id="features">
+        <h2 class="section-title" style="color: var(--accent-color);" data-aos="fade-up">The Churros Lab Experience</h2>
+        <div class="features-grid">
+            <div class="feature" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-crown feature-icon"></i>
+                <h3 class="feature-title">Premium Quality</h3>
+                <p>Bahan berkualitas tertinggi untuk menciptakan churros terbaik</p>
+            </div>
+            <div class="feature" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-flask feature-icon"></i>
+                <h3 class="feature-title">Innovation</h3>
+                <p>Resep unik hasil penelitian dan pengembangan chef profesional</p>
+            </div>
+            <div class="feature" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-award feature-icon"></i>
+                <h3 class="feature-title">Excellence</h3>
+                <p>Standar kualitas tinggi dalam setiap aspek pembuatan</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contact">
+        <h2 class="section-title" data-aos="fade-up">Experience The Extraordinary</h2>
+        <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
+            <p class="contact-text">Nikmati pengalaman bersantap churros premium kami. Pesan sekarang dan rasakan sensasi dessert yang berbeda.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 30px;">
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-headset"></i> Admin 1</p>
+                    <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20The%20Churros%20Lab%2C%0A%0ASaya%20ingin%20memesan%20churros%3A%0A%0ANama%3A%20%0AAlamat%3A%20%0A%0APesanan%3A%0A-%20%5BJumlah%5D%20Classic%20Gold%20%28Rp%2035.000%29%0A-%20%5BJumlah%5D%20Nutella%20Supreme%20%28Rp%2045.000%29%0A-%20%5BJumlah%5D%20Salted%20Caramel%20%28Rp%2040.000%29%0A%0A" class="contact-button" style="background: linear-gradient(45deg, var(--primary-color), #3E2723);">
+                        <i class="fab fa-whatsapp"></i> Chat Admin 1
+                    </a>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-color);"><i class="fas fa-phone"></i> +62 851-7326-4426</p>
+                </div>
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-headset"></i> Admin 2</p>
+                    <a href="https://wa.me/628999234260?text=Halo%20Admin%202%20The%20Churros%20Lab%2C%0A%0ASaya%20ingin%20memesan%20churros%3A%0A%0ANama%3A%20%0AAlamat%3A%20%0A%0APesanan%3A%0A-%20%5BJumlah%5D%20Classic%20Gold%20%28Rp%2035.000%29%0A-%20%5BJumlah%5D%20Nutella%20Supreme%20%28Rp%2045.000%29%0A-%20%5BJumlah%5D%20Salted%20Caramel%20%28Rp%2040.000%29%0A%0A" class="contact-button" style="background: linear-gradient(45deg, #3E2723, var(--accent-color));">
+                        <i class="fab fa-whatsapp"></i> Chat Admin 2
+                    </a>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-color);"><i class="fas fa-phone"></i> +62 899-9234-260</p>
+                </div>
+            </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p class="copyright">&copy; 2025 The Churros Lab. All rights reserved.</p>
+    </footer>
+
+    <!-- Meta tags for better sharing -->
+    <meta property="og:title" content="The Churros Lab | Premium Dessert Experience" />
+    <meta property="og:description" content="Experience the finest churros in town. Handcrafted with love and premium ingredients." />
+    <meta property="og:image" content="./images/churros-hero.jpg" />
+    <meta property="og:url" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
