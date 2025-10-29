@@ -1,125 +1,404 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Churros Lab — Nikmati Camilan Manis</title>
-    <meta name="description" content="The Churros Lab — Churros & dessert yang menggoda. Menu spesial, foto menggugah, pesan online." />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Churros Lab | Premium Dessert Experience</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header class="nav">
-        <div class="container nav-inner">
-            <a class="brand" href="/">The Churros Lab</a>
-            <nav class="nav-links">
-                <a href="#menu">Menu</a>
-                <a href="#about">Tentang</a>
-                <a href="#contact">Pesan</a>
-            </nav>
-        </div>
-    </header>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <main>
-        <section class="hero">
-            <div class="overlay"></div>
-            <div class="container hero-inner">
-                <div class="hero-text">
-                    <h1>Bikin Hari Jadi Manis</h1>
-                    <p>Churros renyah di luar, lembut di dalam — topping melimpah dan saus spesial. Cobain sekarang!</p>
-                    <a class="btn primary" href="#menu">Lihat Menu</a>
-                </div>
-                <div class="hero-image">
-                    <img src="./images/churros.jpeg" alt="Churros" />
-                </div>
-            </div>
-        </section>
+        :root {
+            --primary-color: #2C1810;
+            --accent-color: #D4AF37;
+            --text-color: #333333;
+            --light-bg: #FAF9F6;
+        }
 
-        <section id="menu" class="section">
-            <div class="container">
-                <h2 class="section-title">Menu Favorit</h2>
-                <div class="cards">
-                    <article class="card">
-                        <img src="./images/churros.jpeg" alt="Churros Classic" />
-                        <div class="card-body">
-                            <h3>Churros Classic</h3>
-                            <p>Garing sempurna, gula kayu manis, cocok buat teman ngopi.</p>
-                            <div class="price">Rp20.000</div>
-                        </div>
-                    </article>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+        }
 
-                    <article class="card">
-                        <img src="./images/churros.jpeg" alt="Churros Cokelat" />
-                        <div class="card-body">
-                            <h3>Churros Cokelat Lava</h3>
-                            <p>Disajikan dengan saus cokelat hangat yang meleleh di tiap gigitan.</p>
-                            <div class="price">Rp28.000</div>
-                        </div>
-                    </article>
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-                    <article class="card">
-                        <img src="./images/churros.jpeg" alt="Churros Keju" />
-                        <div class="card-body">
-                            <h3>Churros Keju</h3>
-                            <p>Perpaduan gurih dan manis yang unik — favorit banyak orang.</p>
-                            <div class="price">Rp25.000</div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        <section id="about" class="section alt">
-            <div class="container">
-                <h2 class="section-title">Tentang Kami</h2>
-                <p class="lead">Kami adalah laboratorium rasa untuk churros dan dessert. Dibuat dengan bahan pilihan, diproses dengan cinta.</p>
-                <div class="features-row">
-                    <div class="feature-card">
-                        <strong>Resep Rumah</strong>
-                        <p>Resep autentik dengan sentuhan modern.</p>
-                    </div>
-                    <div class="feature-card">
-                        <strong>Bahan Pilihan</strong>
-                        <p>Tanpa pengawet, fresh setiap hari.</p>
-                    </div>
-                    <div class="feature-card">
-                        <strong>Pesan Online</strong>
-                        <p>Ambil sendiri atau delivery cepat.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
-        <section id="contact" class="section">
-            <div class="container contact-card">
-                <h2 class="section-title">Pesan Sekarang</h2>
-                <p class="lead">Hubungi kami via WhatsApp atau kunjungi outlet.</p>
-                <div class="contact-actions">
-                    <a class="btn secondary" href="https://wa.me/6281234567890">Pesan via WhatsApp</a>
-                    <a class="btn ghost" href="#">Lihat Lokasi</a>
-                </div>
-            </div>
-        </section>
-    </main>
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
 
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div>© <span id="year"></span> The Churros Lab — Semua hak dilindungi</div>
-            <div class="socials">
-                <a href="#">Instagram</a> · <a href="#">Facebook</a>
-            </div>
-        </div>
-    </footer>
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
 
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(45deg, rgba(44, 24, 16, 0.95), rgba(44, 24, 16, 0.8)),
+                        url('./images/churros.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            color: white;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Menu Section */
+        .section {
+            padding: 120px 50px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 60px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover .menu-image {
+            transform: scale(1.1);
+        }
+
+        .menu-content {
+            padding: 30px;
+        }
+
+        .menu-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .menu-description {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .menu-price {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1624371414361-e670edf3e533?w=1600') center/cover no-repeat;
+            opacity: 0.1;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+        }
+
+        .feature-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(45deg, #FAF9F6, #FFF);
+            text-align: center;
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-text {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 40px 50px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-content {
+                position: relative;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: 0.3s ease;
+                backdrop-filter: blur(10px);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                z-index: 1001;
+                padding: 10px;
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background: var(--primary-color);
+                margin: 5px 0;
+                transition: 0.3s;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
 
             .menu-toggle.active span:nth-child(3) {
                 transform: rotate(-45deg) translate(7px, -7px);
@@ -317,7 +596,6 @@
                     <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-color);"><i class="fas fa-phone"></i> +62 899-9234-260</p>
                 </div>
             </div>
-            </a>
         </div>
     </section>
 
