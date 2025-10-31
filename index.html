@@ -499,6 +499,8 @@
             margin-bottom: 20px;
         }
 
+        .footer .social-links { margin-bottom: 0; }
+
         .social-links a {
             color: var(--accent-color);
             font-size: 1.5rem;
@@ -536,6 +538,36 @@
         .copyright {
             font-size: 0.9rem;
             color: rgba(255,255,255,0.7);
+        }
+
+        /* Footer enhanced layout */
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px 20px;
+            margin: 0 auto 18px auto;
+            max-width: 1000px;
+        }
+
+        .footer-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: linear-gradient(45deg, var(--accent-color), #f1d77a);
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .footer-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         /* Animations */
@@ -689,6 +721,12 @@
                 padding: 12px 15px;
                 margin: 5px 0;
             }
+
+            .footer-links {
+                justify-content: center;
+                flex-direction: column;
+                gap: 12px;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -741,7 +779,7 @@
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up">
             <h1 class="hero-title">Churros Unique</h1>
-            <p class="hero-subtitle">Menghadirkan churros premium dengan sentuhan modern dan inovatif, menciptakan pengalaman dessert yang tak terlupakan.</p>
+            <p class="hero-subtitle">Nikmati beragam varian churros dengan sentuhan modern dan inovatif untuk pengalaman dessert yang tak terlupakan.</p>
             <div class="cta-group">
                 <a href="#menu" class="contact-button">Explore Our Menu</a>
                 <a href="#contact" class="contact-button contact-button--outline">Order Now</a>
@@ -831,8 +869,11 @@
     </section>
 
     <footer class="footer">
-        <div class="social-links">
-            <a href="https://www.instagram.com/churros.lab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span class="handle">@churros.lab</span></a>
+        <div class="footer-links">
+            <div class="social-links">
+                <a href="https://www.instagram.com/churros.lab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span class="handle">@churros.lab</span></a>
+            </div>
+            <a class="footer-cta" href="https://forms.gle/rn7zGge63AacY7kY6" target="_blank" rel="noopener noreferrer"><i class="fas fa-clipboard-list"></i> Pre-Order via Google Form</a>
         </div>
         <p class="copyright">&copy; 2025 The Churros Lab. All rights reserved.</p>
     </footer>
