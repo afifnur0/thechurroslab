@@ -104,6 +104,16 @@
             color: white;
         }
 
+        .hero-box {
+            max-width: 760px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 32px 36px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            backdrop-filter: blur(6px);
+        }
+
         .hero-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 5rem;
@@ -126,6 +136,48 @@
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+        }
+
+        .cta-group .contact-button i { margin-right: 8px; }
+
+        .hero-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.95);
+            font-size: 0.85rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator i { animation: floatY 1.6s ease-in-out infinite; }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
         }
 
         .contact-button--outline {
@@ -778,13 +830,21 @@
 
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">Churros Unique</h1>
-            <p class="hero-subtitle">Nikmati beragam varian churros dengan sentuhan modern dan inovatif untuk pengalaman dessert yang tak terlupakan.</p>
-            <div class="cta-group">
-                <a href="#menu" class="contact-button">Explore Our Menu</a>
-                <a href="#contact" class="contact-button contact-button--outline">Order Now</a>
+            <div class="hero-box">
+                <div class="hero-badges">
+                    <span class="hero-badge"><i class="fas fa-fire"></i> Fresh to order</span>
+                    <span class="hero-badge"><i class="fas fa-grip-lines"></i> Banyak varian rasa</span>
+                    <span class="hero-badge"><i class="fas fa-seedling"></i> Bahan berkualitas</span>
+                </div>
+                <h1 class="hero-title">Churros Unique</h1>
+                <p class="hero-subtitle">Nikmati beragam varian churros dengan sentuhan modern dan inovatif untuk pengalaman dessert yang tak terlupakan.</p>
+                <div class="cta-group">
+                    <a href="#menu" class="contact-button"><i class="fas fa-utensils"></i>Explore Our Menu</a>
+                    <a href="#contact" class="contact-button contact-button--outline"><i class="fab fa-whatsapp"></i>Order Now</a>
+                </div>
             </div>
         </div>
+        <a href="#features" class="scroll-indicator"><i class="fas fa-angle-down"></i>Scroll</a>
     </section>
 
     
