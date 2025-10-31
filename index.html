@@ -89,6 +89,14 @@
             background-attachment: fixed;
         }
 
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px 400px at 70% 20%, rgba(212, 175, 55, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
@@ -103,6 +111,7 @@
             line-height: 1.2;
             margin-bottom: 30px;
             color: var(--accent-color);
+            text-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
 
         .hero-subtitle {
@@ -111,6 +120,23 @@
             max-width: 600px;
             margin-bottom: 40px;
             color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button--outline {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .contact-button--outline:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
         }
 
         /* Menu Section */
@@ -126,6 +152,40 @@
             margin-bottom: 60px;
         }
 
+        .section-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: -40px auto 50px auto;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Section dark variant */
+        .section--dark {
+            background-color: var(--primary-color);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section--dark .section-title {
+            color: var(--accent-color);
+        }
+
+        .section--dark .section-subtitle {
+            color: rgba(255,255,255,0.75);
+        }
+
+        .section--dark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(800px 300px at 80% 20%, rgba(212,175,55,0.12), transparent 60%),
+                radial-gradient(600px 250px at 20% 80%, rgba(212,175,55,0.08), transparent 60%);
+            pointer-events: none;
+        }
+
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -133,6 +193,8 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+
+        
 
         .menu-item {
             background: white;
@@ -157,6 +219,7 @@
 
         .menu-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.25);
         }
 
         .menu-item:hover::after {
@@ -172,6 +235,21 @@
 
         .menu-item:hover .menu-image {
             transform: scale(1.1);
+        }
+
+        /* Menu cards on dark section */
+        .section--dark .menu-item {
+            background: #1f120c;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        }
+
+        .section--dark .menu-name {
+            color: #f5e9d6;
+        }
+
+        .section--dark .menu-description {
+            color: rgba(255,255,255,0.75);
         }
 
         .menu-content {
@@ -254,6 +332,113 @@
             color: var(--accent-color);
         }
 
+        .feature-description {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 40px;
+            backdrop-filter: blur(6px);
+            line-height: 1.9;
+        }
+
+        /* Improved Description Layout */
+        .feature-layout {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-photo {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        .feature-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .feature-copy {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-subtitle {
+            color: rgba(255,255,255,0.85);
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .accent-divider {
+            height: 3px;
+            width: 80px;
+            background: linear-gradient(90deg, var(--accent-color), rgba(212,175,55,0.3));
+            border-radius: 999px;
+            margin: 10px 0 20px 0;
+        }
+
+        .feature-list {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+        }
+
+        .feature-list li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .feature-list i {
+            color: var(--accent-color);
+        }
+
+        /* Features light variant */
+        .features.features--light {
+            background: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        .features.features--light::before {
+            display: none;
+        }
+
+        .features.features--light .feature-title {
+            color: var(--primary-color);
+        }
+
+        .features.features--light .feature-copy {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .features.features--light .feature-subtitle {
+            color: #555;
+        }
+
+        .features.features--light .feature-list li {
+            color: var(--text-color);
+        }
+
         /* Contact Section */
         .contact {
             background: linear-gradient(45deg, #FAF9F6, #FFF);
@@ -319,11 +504,33 @@
             font-size: 1.5rem;
             margin: 0 15px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(212,175,55,0.35);
+            background: rgba(212,175,55,0.08);
+        }
+
+        .social-links a .handle {
+            font-size: 1rem;
+            margin-left: 0;
+            color: var(--accent-color);
+            font-weight: 600;
+            letter-spacing: 0.2px;
         }
 
         .social-links a:hover {
-            color: white;
+            color: var(--primary-color);
+            background: var(--accent-color);
+            border-color: var(--accent-color);
             transform: translateY(-3px);
+        }
+
+        .social-links a:hover .handle {
+            color: var(--primary-color);
         }
 
         .copyright {
@@ -441,6 +648,20 @@
                 padding: 30px 20px;
             }
 
+            .feature-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .feature-copy {
+                padding: 20px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
             /* Mobile Contact Section */
             .contact-info {
                 padding: 20px;
@@ -519,14 +740,45 @@
 
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up">
-            <h1 class="hero-title">Discover The Art<br>of Perfect Churros</h1>
+            <h1 class="hero-title">Churros Unique</h1>
             <p class="hero-subtitle">Menghadirkan churros premium dengan sentuhan modern dan inovatif, menciptakan pengalaman dessert yang tak terlupakan.</p>
-            <a href="#menu" class="contact-button">Explore Our Menu</a>
+            <div class="cta-group">
+                <a href="#menu" class="contact-button">Explore Our Menu</a>
+                <a href="#contact" class="contact-button contact-button--outline">Order Now</a>
+            </div>
         </div>
     </section>
 
-    <section class="section" id="menu">
+    
+
+    
+
+    <section class="section features features--light" id="features">
+        <h2 class="section-title" style="color: var(--accent-color);" data-aos="fade-up">Deskripsi Churros</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">Kenali camilan klasik asal Spanyol dengan karakter tekstur renyah di luar, lembut di dalam, dan aroma gula kayu manis yang hangat.</p>
+        <div class="feature-layout" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-photo">
+                <img src="./images/churros 3.jpeg" alt="Churros close-up">
+            </div>
+            <div class="feature-copy">
+                <h3 class="feature-title">Renyah di luar, lembut di dalam</h3>
+                <div class="accent-divider"></div>
+                <p class="feature-subtitle">Camilan klasik asal Spanyol yang kami sempurnakan dengan bahan premium dan teknik modern.</p>
+                <p>Churros dibuat dari adonan sederhana lalu dicetak bergerigi dan digoreng hingga keemasan. Gula kayu manis memberi aroma hangat yang khas, sementara tekstur luar yang crunchy berpadu dengan bagian dalam yang lembut.</p>
+                <p>Untuk pengalaman lebih kaya, nikmati dengan pilihan saus celup favorit: cokelat Belgia, karamel asin, vanilla cream, atau hazelnut.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Gula kayu manis premium</li>
+                    <li><i class="fas fa-check-circle"></i> Saus cokelat Belgia 72%</li>
+                    <li><i class="fas fa-check-circle"></i> Digoreng fresh to order</li>
+                    <li><i class="fas fa-check-circle"></i> Cocok untuk semua momen</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--dark" id="menu">
         <h2 class="section-title" data-aos="fade-up">Our Signature Collection</h2>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">Pilihan menu andalan kami dengan bahan premium dan cita rasa khas The Churros Lab.</p>
         <div class="menu-grid">
             <div class="menu-item" data-aos="fade-up" data-aos-delay="100">
                 <img src="./images/churros 2.jpeg" alt="Classic Gold" class="menu-image">
@@ -555,26 +807,7 @@
         </div>
     </section>
 
-    <section class="section features" id="features">
-        <h2 class="section-title" style="color: var(--accent-color);" data-aos="fade-up">The Churros Lab Experience</h2>
-        <div class="features-grid">
-            <div class="feature" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-crown feature-icon"></i>
-                <h3 class="feature-title">Premium Quality</h3>
-                <p>Bahan berkualitas untuk menciptakan churros terbaik</p>
-            </div>
-            <div class="feature" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-flask feature-icon"></i>
-                <h3 class="feature-title">Innovation</h3>
-                <p>Resep unik hasil racikan dari tim kami</p>
-            </div>  
-            <div class="feature" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-award feature-icon"></i>
-                <h3 class="feature-title">Excellence</h3>
-                <p>Standar kualitas tinggi dalam setiap aspek pembuatan</p>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="section contact" id="contact">
         <h2 class="section-title" data-aos="fade-up">Experience The Extraordinary</h2>
@@ -586,14 +819,12 @@
                     <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button" style="background: linear-gradient(45deg, var(--primary-color), #3E2723);">
                         <i class="fab fa-whatsapp"></i> Chat Admin 1
                     </a>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-color);"><i class="fas fa-phone"></i> +62 851-7326-4426</p>
                 </div>
                 <div style="text-align: center;">
                     <p style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-headset"></i> Admin 2</p>
                     <a href="https://wa.me/628999234260?text=Halo%20Admin%202%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button" style="background: linear-gradient(45deg, #3E2723, var(--accent-color));">
                         <i class="fab fa-whatsapp"></i> Chat Admin 2
                     </a>
-                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--primary-color);"><i class="fas fa-phone"></i> +62 899-9234-260</p>
                 </div>
             </div>
         </div>
@@ -601,15 +832,13 @@
 
     <footer class="footer">
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/churros.lab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span class="handle">@churros.lab</span></a>
         </div>
         <p class="copyright">&copy; 2025 The Churros Lab. All rights reserved.</p>
     </footer>
 
     <!-- Meta tags for better sharing -->
-    <meta property="og:title" content="The Churros Lab | Premium Dessert Experience" />
+    <meta property="og:title" content="The Churros Lab/>
     <meta property="og:description" content="Rasakan churros premium terbaik di kota ini. Dibuat dengan cinta dan bahan berkualitas tinggi." />
     <meta property="og:image" content="./images/churros-hero.jpg" />
     <meta property="og:url" content="https://thechurroslab.vercel.app/" />
@@ -648,6 +877,8 @@
                     navLinks.classList.remove('active');
                 }
             });
+
+            // (carousel removed) – menu back to static grid
         });
 
         // Navbar scroll effect
