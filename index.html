@@ -66,31 +66,38 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
+        }
+
+        .logo-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: none;
             letter-spacing: 0.5px;
-            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
-            transition: width 0.3s ease;
-        }
-
-        .logo:hover::after {
-            width: 100%;
+        .logo:hover .logo-text {
+            transform: translateX(3px);
         }
 
         .nav-links {
@@ -1048,7 +1055,15 @@
             }
 
             .logo {
-                font-size: 1.6rem;
+                gap: 12px;
+            }
+
+            .logo img {
+                height: 45px;
+            }
+
+            .logo-text {
+                font-size: 1.3rem;
             }
 
             .hero {
@@ -1139,7 +1154,15 @@
             }
 
             .logo {
-                font-size: 1.5rem;
+                gap: 10px;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
             }
 
             .nav-content {
@@ -1486,7 +1509,15 @@
             }
 
             .logo {
-                font-size: 1.3rem;
+                gap: 8px;
+            }
+
+            .logo img {
+                height: 35px;
+            }
+
+            .logo-text {
+                font-size: 1.1rem;
             }
 
             .hero-title {
@@ -1638,7 +1669,10 @@
 <body>
     <nav class="navbar">
         <div class="nav-content">
-            <div class="logo">The Churros Lab</div>
+            <div class="logo">
+                <img src="./images/LOGO THE CHURROS LAB WHITE.png" alt="The Churros Lab Logo">
+                <span class="logo-text">The Churros Lab</span>
+            </div>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
