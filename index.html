@@ -70,13 +70,16 @@
         .nav-links a {
             text-decoration: none;
             color: var(--primary-color);
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             transition: all 0.3s ease;
-            padding: 8px 12px;
+            padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 12px);
             border-radius: 6px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-links a:hover {
@@ -122,7 +125,7 @@
 
         .hero-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 5rem;
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 30px;
@@ -132,7 +135,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: 500;
             max-width: 600px;
             margin-bottom: 40px;
@@ -206,12 +209,12 @@
 
         /* Menu Section */
         .section {
-            padding: 120px 50px;
+            padding: clamp(60px, 10vw, 120px) clamp(20px, 5vw, 50px);
         }
 
         .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             text-align: center;
             color: var(--primary-color);
             margin-bottom: 60px;
@@ -258,8 +261,8 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 30vw, 350px), 1fr));
+            gap: clamp(20px, 4vw, 40px);
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -325,12 +328,12 @@
         }
 
         .menu-content {
-            padding: 30px;
+            padding: clamp(20px, 3vw, 30px);
         }
 
         .menu-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--primary-color);
             margin-bottom: 15px;
             font-weight: 700;
@@ -374,8 +377,8 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 25vw, 300px), 1fr));
+            gap: clamp(20px, 4vw, 40px);
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
@@ -384,7 +387,7 @@
 
         .feature {
             text-align: center;
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px);
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             backdrop-filter: blur(10px);
@@ -427,8 +430,8 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 40px;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: clamp(20px, 5vw, 40px);
             align-items: center;
             position: relative;
             z-index: 1;
@@ -438,6 +441,7 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            aspect-ratio: 4/3;
         }
 
         .feature-photo img {
@@ -445,13 +449,18 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-photo:hover img {
+            transform: scale(1.05);
         }
 
         .feature-copy {
             background: rgba(255,255,255,0.06);
             border: 2px solid rgba(255,255,255,0.12);
             border-radius: 20px;
-            padding: 35px;
+            padding: clamp(20px, 4vw, 35px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.25), 0 0 0 1px rgba(212,175,55,0.1) inset;
         }
 
@@ -474,7 +483,7 @@
         .feature-list {
             margin-top: 18px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 10px 20px;
         }
 
@@ -539,7 +548,7 @@
         .contact-info {
             max-width: 600px;
             margin: 0 auto;
-            padding: 40px;
+            padding: clamp(20px, 5vw, 40px);
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -555,7 +564,7 @@
 
         .contact-button {
             display: inline-block;
-            padding: 16px 42px;
+            padding: clamp(12px, 3vw, 16px) clamp(24px, 6vw, 42px);
             background-color: var(--primary-color);
             color: white;
             text-decoration: none;
@@ -579,7 +588,7 @@
             background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 40px 50px;
+            padding: clamp(20px, 5vw, 40px) clamp(20px, 5vw, 50px);
         }
 
         .social-links {
@@ -590,18 +599,19 @@
 
         .social-links a {
             color: var(--accent-color);
-            font-size: 1.5rem;
-            margin: 0 15px;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin: 0 clamp(8px, 2vw, 15px);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 18px;
+            padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 18px);
             border-radius: 999px;
             border: 2px solid rgba(212,175,55,0.4);
             background: rgba(212,175,55,0.1);
             box-shadow: 0 4px 12px rgba(212,175,55,0.2);
+            min-height: 44px;
         }
 
         .social-links a .handle {
@@ -643,7 +653,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 12px 22px;
+            padding: clamp(10px, 2.5vw, 12px) clamp(16px, 4vw, 22px);
             border-radius: 999px;
             background: linear-gradient(45deg, var(--accent-color), #f1d77a);
             color: var(--primary-color);
@@ -653,6 +663,7 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 15px rgba(212,175,55,0.3);
             letter-spacing: 0.5px;
+            min-height: 44px;
         }
 
         .footer-cta:hover {
@@ -677,6 +688,59 @@
         }
 
         /* Responsive Design */
+        /* Tablet Styles */
+        @media screen and (max-width: 1024px) {
+            .navbar {
+                padding: 18px 30px;
+            }
+
+            .hero-title {
+                font-size: 4rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 80px 30px;
+            }
+
+            .section-title {
+                font-size: 2.8rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 30px;
+                padding: 0 30px;
+            }
+
+            .feature-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 30px;
+            }
+
+            .feature-copy {
+                padding: 25px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding: 30px;
+                margin: 0 30px;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
@@ -710,6 +774,11 @@
                 cursor: pointer;
                 z-index: 1001;
                 padding: 10px;
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .menu-toggle span {
@@ -790,11 +859,45 @@
                 margin: 0 20px;
             }
 
-            /* Mobile Admin Buttons */
+            /* Admin Buttons */
             .admin-buttons {
-                flex-direction: column;
-                gap: 15px;
-                padding: 0 20px;
+                display: flex;
+                gap: clamp(15px, 4vw, 20px);
+                justify-content: center;
+                margin-bottom: 30px;
+                flex-wrap: wrap;
+            }
+    
+            .admin-button-wrapper {
+                text-align: center;
+                flex: 1;
+                min-width: 200px;
+                max-width: 250px;
+            }
+    
+            .admin-label {
+                margin-bottom: 15px;
+                color: var(--primary-color);
+                font-weight: 600;
+            }
+    
+            .admin-button {
+                width: 100%;
+                text-align: center;
+            }
+    
+            /* Mobile Admin Buttons */
+            @media screen and (max-width: 768px) {
+                .admin-buttons {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 0 20px;
+                }
+    
+                .admin-button-wrapper {
+                    min-width: unset;
+                    max-width: unset;
+                }
             }
 
             .contact-button {
@@ -810,6 +913,10 @@
             .social-links a {
                 padding: 12px 15px;
                 margin: 5px 0;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             .footer-links {
@@ -949,16 +1056,16 @@
         <h2 class="section-title" data-aos="fade-up">Experience The Extraordinary</h2>
         <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
             <p class="contact-text">Nikmati pengalaman bersantap churros premium kami. Pesan sekarang dan rasakan sensasi dessert yang berbeda.</p>
-            <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 30px;">
-                <div style="text-align: center;">
-                    <p style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-headset"></i> Admin 1</p>
-                    <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button" style="background: linear-gradient(45deg, var(--primary-color), #3E2723);">
+            <div class="admin-buttons">
+                <div class="admin-button-wrapper">
+                    <p class="admin-label"><i class="fas fa-headset"></i> Admin 1</p>
+                    <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button admin-button" style="background: linear-gradient(45deg, var(--primary-color), #3E2723);">
                         <i class="fab fa-whatsapp"></i> Chat Admin 1
                     </a>
                 </div>
-                <div style="text-align: center;">
-                    <p style="margin-bottom: 15px; color: var(--primary-color);"><i class="fas fa-headset"></i> Admin 2</p>
-                    <a href="https://wa.me/628999234260?text=Halo%20Admin%202%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button" style="background: linear-gradient(45deg, #3E2723, var(--accent-color));">
+                <div class="admin-button-wrapper">
+                    <p class="admin-label"><i class="fas fa-headset"></i> Admin 2</p>
+                    <a href="https://wa.me/628999234260?text=Halo%20Admin%202%20The%20Churros%20Lab%2C%0A%0AAku%20Mau%20Churrosnya%20Dong!" class="contact-button admin-button" style="background: linear-gradient(45deg, #3E2723, var(--accent-color));">
                         <i class="fab fa-whatsapp"></i> Chat Admin 2
                     </a>
                 </div>
