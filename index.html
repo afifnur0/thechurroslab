@@ -138,7 +138,7 @@
                         url('./images/churros.jpeg') center/cover no-repeat;
             background-attachment: fixed;
             overflow: hidden;
-            padding-top: 120px;
+            padding-top: 80px;
         }
 
         .hero::before {
@@ -951,105 +951,10 @@
             animation: fadeInUp 0.6s ease-out forwards;
         }
 
-        /* Running Text / Marquee */
-        .running-text-container {
-            background: linear-gradient(135deg, var(--primary-color), #3d2419);
-            padding: 12px 0;
-            overflow: hidden;
-            position: fixed;
-            top: 80px;
-            width: 100%;
-            z-index: 999;
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        .running-text-container::before,
-        .running-text-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .running-text-container::before {
-            left: 0;
-            background: linear-gradient(to right, rgba(44, 24, 16, 1), transparent);
-        }
-
-        .running-text-container::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(44, 24, 16, 1), transparent);
-        }
-
-        .running-text {
-            display: flex;
-            animation: scroll-left 30s linear infinite;
-            white-space: nowrap;
-        }
-
-        .running-text-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            padding: 0 50px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-
-        .running-text-item i {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            animation: pulse-icon 2s ease-in-out infinite;
-        }
-
-        .running-text-item .highlight {
-            color: var(--accent-color);
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes pulse-icon {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 0.8;
-            }
-        }
-
-        /* Pause animation on hover */
-        .running-text-container:hover .running-text {
-            animation-play-state: paused;
-        }
 
         /* Responsive Design */
         /* Tablet Styles */
         @media screen and (max-width: 1024px) {
-            .running-text-container {
-                top: 75px;
-            }
-
-            .running-text-item {
-                font-size: 0.9rem;
-                padding: 0 40px;
-            }
-
             .navbar {
                 padding: 18px 30px;
             }
@@ -1126,25 +1031,6 @@
         }
 
         @media screen and (max-width: 768px) {
-            .running-text-container {
-                padding: 10px 0;
-                top: 70px;
-            }
-
-            .running-text {
-                animation: scroll-left 25s linear infinite;
-            }
-
-            .running-text-item {
-                font-size: 0.85rem;
-                padding: 0 30px;
-                gap: 10px;
-            }
-
-            .running-text-item i {
-                font-size: 1rem;
-            }
-
             .navbar {
                 padding: 15px 20px;
             }
@@ -1241,7 +1127,7 @@
             .hero {
                 height: auto;
                 min-height: 100vh;
-                padding: 130px 0 60px;
+                padding: 100px 0 60px;
                 background-attachment: scroll;
             }
 
@@ -1494,21 +1380,7 @@
         }
 
         @media screen and (max-width: 480px) {
-            .running-text-container {
-                padding: 8px 0;
-                top: 65px;
-            }
-
-            .running-text {
-                animation: scroll-left 20s linear infinite;
-            }
-
-            .running-text-item {
-                font-size: 0.8rem;
-                padding: 0 25px;
-            }
-
-            .logo {
+            .navbar {
                 gap: 8px;
             }
 
@@ -1686,53 +1558,6 @@
             </ul>
         </div>
     </nav>
-
-    <!-- Running Text / Marquee -->
-    <div class="running-text-container">
-        <div class="running-text">
-            <span class="running-text-item">
-                <i class="fas fa-cookie-bite"></i>
-                <span>Churros adalah <span class="highlight">camilan klasik asal Spanyol</span> yang digoreng hingga keemasan</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-fire"></i>
-                <span>Tekstur <span class="highlight">renyah di luar, lembut di dalam</span> dengan aroma gula kayu manis yang khas</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-star"></i>
-                <span>Dibuat dari <span class="highlight">adonan choux</span> yang dicetak bergerigi dan digoreng fresh</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-heart"></i>
-                <span>Sempurna disajikan dengan <span class="highlight">saus cokelat Belgia</span> atau karamel asin</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-mug-hot"></i>
-                <span>Cocok dinikmati sebagai <span class="highlight">dessert atau camilan</span> kapan saja</span>
-            </span>
-            <!-- Duplicate for seamless loop -->
-            <span class="running-text-item">
-                <i class="fas fa-cookie-bite"></i>
-                <span>Churros adalah <span class="highlight">camilan klasik asal Spanyol</span> yang digoreng hingga keemasan</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-fire"></i>
-                <span>Tekstur <span class="highlight">renyah di luar, lembut di dalam</span> dengan aroma gula kayu manis yang khas</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-star"></i>
-                <span>Dibuat dari <span class="highlight">adonan choux</span> yang dicetak bergerigi dan digoreng fresh</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-heart"></i>
-                <span>Sempurna disajikan dengan <span class="highlight">saus cokelat Belgia</span> atau karamel asin</span>
-            </span>
-            <span class="running-text-item">
-                <i class="fas fa-mug-hot"></i>
-                <span>Cocok dinikmati sebagai <span class="highlight">dessert atau camilan</span> kapan saja</span>
-            </span>
-        </div>
-    </div>
 
     <section class="hero" id="home">
         <div class="hero-content" data-aos="fade-up">
