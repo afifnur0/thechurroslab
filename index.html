@@ -68,20 +68,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
             position: relative;
-        }
-
-        .logo img {
-            height: 50px;
-            width: auto;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-
-        .logo:hover img {
-            transform: scale(1.05);
-            filter: drop-shadow(0 4px 8px rgba(212, 175, 55, 0.3));
         }
 
         .logo-text {
@@ -97,7 +84,7 @@
         }
 
         .logo:hover .logo-text {
-            transform: translateX(3px);
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -959,14 +946,6 @@
                 padding: 18px 30px;
             }
 
-            .logo {
-                gap: 12px;
-            }
-
-            .logo img {
-                height: 45px;
-            }
-
             .logo-text {
                 font-size: 1.3rem;
             }
@@ -1037,14 +1016,6 @@
 
             .navbar.scrolled {
                 padding: 12px 20px;
-            }
-
-            .logo {
-                gap: 10px;
-            }
-
-            .logo img {
-                height: 40px;
             }
 
             .logo-text {
@@ -1380,14 +1351,6 @@
         }
 
         @media screen and (max-width: 480px) {
-            .navbar {
-                gap: 8px;
-            }
-
-            .logo img {
-                height: 35px;
-            }
-
             .logo-text {
                 font-size: 1.1rem;
             }
@@ -1542,7 +1505,6 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
-                <img src="./images/LOGO THE CHURROS LAB WHITE.png" alt="The Churros Lab Logo">
                 <span class="logo-text">The Churros Lab</span>
             </div>
             <div class="menu-toggle">
