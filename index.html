@@ -1621,6 +1621,50 @@
             gap: 20px;
         }
 
+        /* Menu Checkbox Styles */
+        .menu-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .menu-checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            background: #fafafa;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu-checkbox-item:hover {
+            background: white;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
+        }
+
+        .menu-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .menu-checkbox-label {
+            font-size: 1rem;
+            color: var(--text-color);
+            flex: 1;
+        }
+
+        .menu-checkbox-item:has(.menu-checkbox:checked) {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
         .submit-button {
             width: 100%;
             padding: 16px 32px;
@@ -1853,20 +1897,34 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="menuItem">Pilih Menu<span class="required">*</span></label>
-                    <select id="menuItem" name="menuItem" class="form-select" required>
-                        <option value="">-- Pilih Menu --</option>
-                        <option value="Classic Gold - Rp 35.000">Classic Gold - Rp 35.000</option>
-                        <option value="Nutella Supreme - Rp 45.000">Nutella Supreme - Rp 45.000</option>
-                        <option value="Salted Caramel - Rp 40.000">Salted Caramel - Rp 40.000</option>
-                    </select>
+                    <label class="form-label">Pilih Menu<span class="required">*</span></label>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">Pilih satu atau lebih menu yang Anda inginkan</p>
+                    
+                    <div class="menu-checkbox-group">
+                        <label class="menu-checkbox-item">
+                            <input type="checkbox" name="menuItem" value="Classic Gold - Rp 35.000" class="menu-checkbox">
+                            <span class="menu-checkbox-label">
+                                <strong>Classic Gold</strong> - Rp 35.000
+                            </span>
+                        </label>
+                        
+                        <label class="menu-checkbox-item">
+                            <input type="checkbox" name="menuItem" value="Nutella Supreme - Rp 45.000" class="menu-checkbox">
+                            <span class="menu-checkbox-label">
+                                <strong>Nutella Supreme</strong> - Rp 45.000
+                            </span>
+                        </label>
+                        
+                        <label class="menu-checkbox-item">
+                            <input type="checkbox" name="menuItem" value="Salted Caramel - Rp 40.000" class="menu-checkbox">
+                            <span class="menu-checkbox-label">
+                                <strong>Salted Caramel</strong> - Rp 40.000
+                            </span>
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label" for="quantity">Jumlah<span class="required">*</span></label>
-                        <input type="number" id="quantity" name="quantity" class="form-input" placeholder="1" min="1" value="1" required>
-                    </div>
 
                     <div class="form-group">
                         <label class="form-label" for="deliveryMethod">Metode Pengiriman<span class="required">*</span></label>
@@ -1972,11 +2030,19 @@
                 // Get form values
                 const customerName = document.getElementById('customerName').value;
                 const phoneNumber = document.getElementById('phoneNumber').value;
-                const menuItem = document.getElementById('menuItem').value;
-                const quantity = document.getElementById('quantity').value;
                 const deliveryMethod = document.getElementById('deliveryMethod').value;
                 const address = document.getElementById('address').value;
                 const notes = document.getElementById('notes').value;
+
+                // Get selected menu items (checkbox)
+                const menuCheckboxes = document.querySelectorAll('input[name="menuItem"]:checked');
+                const selectedMenus = Array.from(menuCheckboxes).map(cb => cb.value);
+
+                // Validate at least one menu selected
+                if (selectedMenus.length === 0) {
+                    alert('Mohon pilih minimal satu menu!');
+                    return;
+                }
 
                 // Validate delivery address if method is delivery
                 if (deliveryMethod === 'Delivery' && !address.trim()) {
@@ -1990,10 +2056,12 @@
                 message += `📋 *Detail Pesanan:*\n`;
                 message += `━━━━━━━━━━━━━━━━\n`;
                 message += `👤 Nama: ${customerName}\n`;
-                message += `📱 No. WhatsApp: ${phoneNumber}\n`;
-                message += `🍩 Menu: ${menuItem}\n`;
-                message += `📦 Jumlah: ${quantity}\n`;
-                message += `🚚 Metode: ${deliveryMethod}\n`;
+                message += `📱 No. WhatsApp: ${phoneNumber}\n\n`;
+                message += `🍩 *Menu yang dipesan:*\n`;
+                selectedMenus.forEach((menu, index) => {
+                    message += `   ${index + 1}. ${menu}\n`;
+                });
+                message += `\n🚚 Metode: ${deliveryMethod}\n`;
                 
                 if (address.trim()) {
                     message += `📍 Alamat: ${address}\n`;
@@ -2018,6 +2086,8 @@
                 // Reset form after redirect
                 setTimeout(() => {
                     orderForm.reset();
+                    // Uncheck all menu checkboxes
+                    document.querySelectorAll('input[name="menuItem"]').forEach(cb => cb.checked = false);
                 }, 1000);
             });
 
