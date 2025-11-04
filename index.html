@@ -1499,6 +1499,236 @@
                 background: rgba(212, 175, 55, 0.2);
             }
         }
+
+        /* Order Form Styles */
+        .order-form-section {
+            background: linear-gradient(135deg, #FAF9F6, #FFF);
+            padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 50px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .order-form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: clamp(30px, 5vw, 50px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(212, 175, 55, 0.1);
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light), var(--accent-color));
+            border-radius: 20px 20px 0 0;
+        }
+
+        .form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 35px;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            color: var(--text-color);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1), 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 45px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--primary-color), #3d2419);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .submit-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .submit-button:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5), 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-button:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-button i {
+            margin-right: 10px;
+        }
+
+        .form-info {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .form-info i {
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+
+        /* Mobile Form Styles */
+        @media screen and (max-width: 768px) {
+            .order-form-section {
+                padding: 50px 20px;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .submit-button {
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .form-container {
+                padding: 25px 18px;
+            }
+
+            .form-title {
+                font-size: 1.8rem;
+            }
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1516,7 +1746,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Our Menu</a></li>
                 <li><a href="#features">Experience</a></li>
-                <li><a href="#contact">Order Now</a></li>
+                <li><a href="#order-form">Order Form</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1598,7 +1829,72 @@
         </div>
     </section>
 
-    
+    <!-- Order Form Section -->
+    <section class="order-form-section" id="order-form">
+        <div class="form-container" data-aos="fade-up">
+            <h2 class="form-title">Order Form</h2>
+            <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Pesanan akan langsung dikirim ke WhatsApp kami!</p>
+            
+            <div class="form-info">
+                <i class="fas fa-info-circle"></i>
+                <strong>Info:</strong> Setelah submit, Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan. Kami juga akan mengirimkan pesan otomatis ke nomor Anda.
+            </div>
+
+            <form id="orderForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="customerName">Nama Lengkap<span class="required">*</span></label>
+                        <input type="text" id="customerName" name="customerName" class="form-input" placeholder="Masukkan nama Anda" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phoneNumber">Nomor WhatsApp<span class="required">*</span></label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-input" placeholder="08xxxxxxxxxx" required pattern="[0-9]{10,13}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="menuItem">Pilih Menu<span class="required">*</span></label>
+                    <select id="menuItem" name="menuItem" class="form-select" required>
+                        <option value="">-- Pilih Menu --</option>
+                        <option value="Classic Gold - Rp 35.000">Classic Gold - Rp 35.000</option>
+                        <option value="Nutella Supreme - Rp 45.000">Nutella Supreme - Rp 45.000</option>
+                        <option value="Salted Caramel - Rp 40.000">Salted Caramel - Rp 40.000</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">Jumlah<span class="required">*</span></label>
+                        <input type="number" id="quantity" name="quantity" class="form-input" placeholder="1" min="1" value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="deliveryMethod">Metode Pengiriman<span class="required">*</span></label>
+                        <select id="deliveryMethod" name="deliveryMethod" class="form-select" required>
+                            <option value="">-- Pilih Metode --</option>
+                            <option value="Pickup">Pickup</option>
+                            <option value="Delivery">Delivery</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="address">Alamat Pengiriman</label>
+                    <input type="text" id="address" name="address" class="form-input" placeholder="Isi jika pilih delivery">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="notes">Catatan Tambahan</label>
+                    <textarea id="notes" name="notes" class="form-textarea" placeholder="Contoh: Tolong tambahkan saus ekstra, dll."></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    <i class="fab fa-whatsapp"></i>Kirim Pesanan via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
 
     <section class="section contact" id="contact">
         <h2 class="section-title" data-aos="fade-up">Experience The Extraordinary</h2>
@@ -1684,6 +1980,137 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Order Form Handler with WhatsApp Integration
+        const orderForm = document.getElementById('orderForm');
+        
+        if (orderForm) {
+            orderForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const customerName = document.getElementById('customerName').value;
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const menuItem = document.getElementById('menuItem').value;
+                const quantity = document.getElementById('quantity').value;
+                const deliveryMethod = document.getElementById('deliveryMethod').value;
+                const address = document.getElementById('address').value;
+                const notes = document.getElementById('notes').value;
+
+                // Validate delivery address if method is delivery
+                if (deliveryMethod === 'Delivery' && !address.trim()) {
+                    alert('Mohon isi alamat pengiriman untuk metode delivery!');
+                    document.getElementById('address').focus();
+                    return;
+                }
+
+                // Format phone number (remove leading 0 and add 62)
+                let formattedPhone = phoneNumber.trim();
+                if (formattedPhone.startsWith('0')) {
+                    formattedPhone = '62' + formattedPhone.substring(1);
+                } else if (!formattedPhone.startsWith('62')) {
+                    formattedPhone = '62' + formattedPhone;
+                }
+
+                // Owner's WhatsApp number (ganti dengan nomor owner yang sebenarnya)
+                const ownerPhone = '6285173264426'; // Ganti dengan nomor owner
+
+                // Create message for owner
+                let ownerMessage = `🎉 *PESANAN BARU - The Churros Lab* 🎉\n\n`;
+                ownerMessage += `👤 *Nama:* ${customerName}\n`;
+                ownerMessage += `📱 *No. WhatsApp:* ${phoneNumber}\n`;
+                ownerMessage += `🍩 *Menu:* ${menuItem}\n`;
+                ownerMessage += `📦 *Jumlah:* ${quantity}\n`;
+                ownerMessage += `🚚 *Metode:* ${deliveryMethod}\n`;
+                
+                if (address.trim()) {
+                    ownerMessage += `📍 *Alamat:* ${address}\n`;
+                }
+                
+                if (notes.trim()) {
+                    ownerMessage += `📝 *Catatan:* ${notes}\n`;
+                }
+                
+                ownerMessage += `\n⏰ *Waktu Order:* ${new Date().toLocaleString('id-ID')}\n`;
+                ownerMessage += `\n_Mohon segera konfirmasi pesanan ini_`;
+
+                // Create auto-reply message for customer
+                let customerMessage = `Halo *${customerName}*! 👋\n\n`;
+                customerMessage += `Terima kasih sudah memesan di *The Churros Lab*! 🍩✨\n\n`;
+                customerMessage += `📋 *Detail Pesanan Anda:*\n`;
+                customerMessage += `━━━━━━━━━━━━━━━━\n`;
+                customerMessage += `🍩 Menu: ${menuItem}\n`;
+                customerMessage += `📦 Jumlah: ${quantity}\n`;
+                customerMessage += `🚚 Metode: ${deliveryMethod}\n`;
+                
+                if (address.trim()) {
+                    customerMessage += `📍 Alamat: ${address}\n`;
+                }
+                
+                customerMessage += `━━━━━━━━━━━━━━━━\n\n`;
+                customerMessage += `⏳ Pesanan Anda sedang kami proses.\n`;
+                customerMessage += `Tim kami akan segera menghubungi Anda untuk konfirmasi.\n\n`;
+                customerMessage += `Terima kasih! 🙏\n`;
+                customerMessage += `*The Churros Lab Team*`;
+
+                // Encode messages for URL
+                const encodedOwnerMessage = encodeURIComponent(ownerMessage);
+                const encodedCustomerMessage = encodeURIComponent(customerMessage);
+
+                // Create WhatsApp URLs
+                const ownerWhatsAppURL = `https://wa.me/${ownerPhone}?text=${encodedOwnerMessage}`;
+                const customerWhatsAppURL = `https://wa.me/${formattedPhone}?text=${encodedCustomerMessage}`;
+
+                // Open owner WhatsApp first
+                window.open(ownerWhatsAppURL, '_blank');
+
+                // Show confirmation and option to send auto-reply to customer
+                setTimeout(() => {
+                    const sendToCustomer = confirm(
+                        `Pesanan berhasil dikirim ke admin!\n\n` +
+                        `Apakah Anda ingin mengirim pesan konfirmasi otomatis ke pelanggan (${customerName} - ${phoneNumber})?\n\n` +
+                        `Klik OK untuk mengirim auto-reply ke pelanggan.`
+                    );
+
+                    if (sendToCustomer) {
+                        window.open(customerWhatsAppURL, '_blank');
+                        
+                        // Show success message
+                        setTimeout(() => {
+                            alert('✅ Pesanan telah dikirim!\n\n' +
+                                  '1. Pesan pesanan dikirim ke admin\n' +
+                                  '2. Auto-reply dikirim ke pelanggan\n\n' +
+                                  'Silakan cek WhatsApp Anda untuk melanjutkan.');
+                        }, 500);
+                    }
+
+                    // Reset form
+                    orderForm.reset();
+                }, 1000);
+            });
+
+            // Auto-fill phone number validation
+            const phoneInput = document.getElementById('phoneNumber');
+            phoneInput.addEventListener('input', function(e) {
+                // Remove non-numeric characters
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+
+            // Show/hide address field based on delivery method
+            const deliveryMethodSelect = document.getElementById('deliveryMethod');
+            const addressGroup = document.getElementById('address').closest('.form-group');
+            
+            deliveryMethodSelect.addEventListener('change', function() {
+                if (this.value === 'Delivery') {
+                    addressGroup.style.display = 'block';
+                    document.getElementById('address').required = true;
+                } else if (this.value === 'Pickup') {
+                    addressGroup.style.display = 'none';
+                    document.getElementById('address').required = false;
+                    document.getElementById('address').value = '';
+                }
+            });
+        }
     </script>
 </body>
 </html>
