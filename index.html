@@ -1832,11 +1832,11 @@
     <section class="order-form-section" id="order-form">
         <div class="form-container" data-aos="fade-up">
             <h2 class="form-title">Order Now</h2>
-            <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Kami akan menghubungi Anda via WhatsApp untuk konfirmasi!</p>
+            <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Pesanan akan langsung dikirim ke WhatsApp kami!</p>
             
             <div class="form-info">
                 <i class="fas fa-info-circle"></i>
-                <strong>Info:</strong> Setelah submit, kami akan menghubungi Anda via WhatsApp untuk konfirmasi pesanan. Pastikan nomor WhatsApp yang Anda masukkan aktif!
+                <strong>Info:</strong> Setelah submit, Anda akan diarahkan ke WhatsApp kami dengan detail pesanan yang sudah terisi otomatis. Tinggal klik kirim!
             </div>
 
             <form id="orderForm">
@@ -1985,49 +1985,40 @@
                     return;
                 }
 
-                // Create message for owner (notifikasi pesanan baru)
-                let ownerMessage = `🎉 *PESANAN BARU - The Churros Lab* 🎉\n\n`;
-                ownerMessage += `👤 *Nama Pelanggan:* ${customerName}\n`;
-                ownerMessage += `📱 *No. WhatsApp:* ${phoneNumber}\n`;
-                ownerMessage += `🍩 *Menu:* ${menuItem}\n`;
-                ownerMessage += `📦 *Jumlah:* ${quantity}\n`;
-                ownerMessage += `🚚 *Metode:* ${deliveryMethod}\n`;
+                // Create message from customer to owner
+                let message = `Halo! Saya mau pesan churros 🍩\n\n`;
+                message += `📋 *Detail Pesanan:*\n`;
+                message += `━━━━━━━━━━━━━━━━\n`;
+                message += `👤 Nama: ${customerName}\n`;
+                message += `📱 No. WhatsApp: ${phoneNumber}\n`;
+                message += `🍩 Menu: ${menuItem}\n`;
+                message += `📦 Jumlah: ${quantity}\n`;
+                message += `🚚 Metode: ${deliveryMethod}\n`;
                 
                 if (address.trim()) {
-                    ownerMessage += `📍 *Alamat:* ${address}\n`;
+                    message += `📍 Alamat: ${address}\n`;
                 }
                 
                 if (notes.trim()) {
-                    ownerMessage += `📝 *Catatan:* ${notes}\n`;
+                    message += `📝 Catatan: ${notes}\n`;
                 }
                 
-                ownerMessage += `\n⏰ *Waktu Order:* ${new Date().toLocaleString('id-ID')}\n`;
-                ownerMessage += `\n_Segera hubungi pelanggan untuk konfirmasi!_`;
+                message += `━━━━━━━━━━━━━━━━\n\n`;
+                message += `Mohon konfirmasi pesanan saya. Terima kasih! 🙏`;
 
                 // Encode message
-                const encodedMessage = encodeURIComponent(ownerMessage);
+                const encodedMessage = encodeURIComponent(message);
 
-                // Create WhatsApp URL - kirim ke owner
+                // Create WhatsApp URL - pelanggan chat ke owner
                 const whatsappURL = `https://wa.me/${OWNER_PHONE}?text=${encodedMessage}`;
 
-                // Open WhatsApp
-                window.open(whatsappURL, '_blank');
+                // Redirect to WhatsApp
+                window.location.href = whatsappURL;
 
-                // Show success message to customer
+                // Reset form after redirect
                 setTimeout(() => {
-                    alert('✅ Pesanan Berhasil Dikirim!\n\n' +
-                          '📱 Tim kami akan segera menghubungi Anda via WhatsApp untuk konfirmasi pesanan.\n\n' +
-                          '📋 Detail pesanan Anda:\n' +
-                          `• Nama: ${customerName}\n` +
-                          `• No. WA: ${phoneNumber}\n` +
-                          `• Menu: ${menuItem}\n` +
-                          `• Jumlah: ${quantity}\n` +
-                          `• Metode: ${deliveryMethod}\n\n` +
-                          'Terima kasih sudah memesan! 🙏');
-                    
-                    // Reset form
                     orderForm.reset();
-                }, 500);
+                }, 1000);
             });
 
             // Auto-fill phone number validation
