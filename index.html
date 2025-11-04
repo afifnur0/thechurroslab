@@ -1665,6 +1665,49 @@
             box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
+        .menu-quantity {
+            width: 70px;
+            padding: 8px 12px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-left: auto;
+        }
+
+        .menu-quantity:enabled {
+            border-color: var(--accent-color);
+            background: white;
+        }
+
+        .menu-quantity:disabled {
+            background: #e0e0e0;
+            cursor: not-allowed;
+        }
+
+        .total-price-display {
+            margin-top: 20px;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--primary-color), #3d2419);
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .total-price-display strong {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        #totalPrice {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
         .submit-button {
             width: 100%;
             padding: 16px 32px;
@@ -1897,30 +1940,37 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Pilih Menu<span class="required">*</span></label>
-                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">Pilih satu atau lebih menu yang Anda inginkan</p>
+                    <label class="form-label">Pilih Menu & Jumlah<span class="required">*</span></label>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">Pilih menu dan tentukan jumlah pesanan</p>
                     
                     <div class="menu-checkbox-group">
                         <label class="menu-checkbox-item">
-                            <input type="checkbox" name="menuItem" value="Classic Gold - Rp 35.000" class="menu-checkbox">
+                            <input type="checkbox" name="menuItem" value="Classic Gold" data-price="35000" class="menu-checkbox">
                             <span class="menu-checkbox-label">
                                 <strong>Classic Gold</strong> - Rp 35.000
                             </span>
+                            <input type="number" class="menu-quantity" min="1" value="1" disabled>
                         </label>
                         
                         <label class="menu-checkbox-item">
-                            <input type="checkbox" name="menuItem" value="Nutella Supreme - Rp 45.000" class="menu-checkbox">
+                            <input type="checkbox" name="menuItem" value="Nutella Supreme" data-price="45000" class="menu-checkbox">
                             <span class="menu-checkbox-label">
                                 <strong>Nutella Supreme</strong> - Rp 45.000
                             </span>
+                            <input type="number" class="menu-quantity" min="1" value="1" disabled>
                         </label>
                         
                         <label class="menu-checkbox-item">
-                            <input type="checkbox" name="menuItem" value="Salted Caramel - Rp 40.000" class="menu-checkbox">
+                            <input type="checkbox" name="menuItem" value="Salted Caramel" data-price="40000" class="menu-checkbox">
                             <span class="menu-checkbox-label">
                                 <strong>Salted Caramel</strong> - Rp 40.000
                             </span>
+                            <input type="number" class="menu-quantity" min="1" value="1" disabled>
                         </label>
+                    </div>
+                    
+                    <div class="total-price-display">
+                        <strong>Total Harga:</strong> <span id="totalPrice">Rp 0</span>
                     </div>
                 </div>
 
@@ -2034,9 +2084,28 @@
                 const address = document.getElementById('address').value;
                 const notes = document.getElementById('notes').value;
 
-                // Get selected menu items (checkbox)
-                const menuCheckboxes = document.querySelectorAll('input[name="menuItem"]:checked');
-                const selectedMenus = Array.from(menuCheckboxes).map(cb => cb.value);
+                // Get selected menu items with quantity
+                const allCheckboxes = document.querySelectorAll('.menu-checkbox');
+                const allQuantityInputs = document.querySelectorAll('.menu-quantity');
+                const selectedMenus = [];
+                let totalPrice = 0;
+
+                allCheckboxes.forEach((checkbox, index) => {
+                    if (checkbox.checked) {
+                        const menuName = checkbox.value;
+                        const price = parseInt(checkbox.dataset.price);
+                        const quantity = parseInt(allQuantityInputs[index].value) || 1;
+                        const subtotal = price * quantity;
+                        totalPrice += subtotal;
+                        
+                        selectedMenus.push({
+                            name: menuName,
+                            price: price,
+                            quantity: quantity,
+                            subtotal: subtotal
+                        });
+                    }
+                });
 
                 // Validate at least one menu selected
                 if (selectedMenus.length === 0) {
@@ -2058,10 +2127,12 @@
                 message += `👤 Nama: ${customerName}\n`;
                 message += `📱 No. WhatsApp: ${phoneNumber}\n\n`;
                 message += `🍩 *Menu yang dipesan:*\n`;
-                selectedMenus.forEach((menu, index) => {
-                    message += `   ${index + 1}. ${menu}\n`;
+                selectedMenus.forEach((item, index) => {
+                    message += `   ${index + 1}. ${item.name}\n`;
+                    message += `      ${item.quantity}x @ Rp ${item.price.toLocaleString('id-ID')} = Rp ${item.subtotal.toLocaleString('id-ID')}\n`;
                 });
-                message += `\n🚚 Metode: ${deliveryMethod}\n`;
+                message += `\n💰 *TOTAL: Rp ${totalPrice.toLocaleString('id-ID')}*\n\n`;
+                message += `🚚 Metode: ${deliveryMethod}\n`;
                 
                 if (address.trim()) {
                     message += `📍 Alamat: ${address}\n`;
@@ -2086,10 +2157,54 @@
                 // Reset form after redirect
                 setTimeout(() => {
                     orderForm.reset();
-                    // Uncheck all menu checkboxes
-                    document.querySelectorAll('input[name="menuItem"]').forEach(cb => cb.checked = false);
+                    // Uncheck all menu checkboxes and reset quantities
+                    document.querySelectorAll('.menu-checkbox').forEach(cb => cb.checked = false);
+                    document.querySelectorAll('.menu-quantity').forEach(input => {
+                        input.disabled = true;
+                        input.value = 1;
+                    });
+                    // Reset total price
+                    document.getElementById('totalPrice').textContent = 'Rp 0';
                 }, 1000);
             });
+
+            // Handle checkbox and quantity input
+            const menuCheckboxes = document.querySelectorAll('.menu-checkbox');
+            const quantityInputs = document.querySelectorAll('.menu-quantity');
+            
+            menuCheckboxes.forEach((checkbox, index) => {
+                checkbox.addEventListener('change', function() {
+                    const quantityInput = quantityInputs[index];
+                    if (this.checked) {
+                        quantityInput.disabled = false;
+                    } else {
+                        quantityInput.disabled = true;
+                        quantityInput.value = 1;
+                    }
+                    calculateTotal();
+                });
+            });
+
+            // Calculate total when quantity changes
+            quantityInputs.forEach(input => {
+                input.addEventListener('input', calculateTotal);
+            });
+
+            // Function to calculate total price
+            function calculateTotal() {
+                let total = 0;
+                menuCheckboxes.forEach((checkbox, index) => {
+                    if (checkbox.checked) {
+                        const price = parseInt(checkbox.dataset.price);
+                        const quantity = parseInt(quantityInputs[index].value) || 1;
+                        total += price * quantity;
+                    }
+                });
+                
+                // Format number with thousand separator
+                const formattedTotal = total.toLocaleString('id-ID');
+                document.getElementById('totalPrice').textContent = `Rp ${formattedTotal}`;
+            }
 
             // Auto-fill phone number validation
             const phoneInput = document.getElementById('phoneNumber');
