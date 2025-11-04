@@ -973,6 +973,148 @@
                 font-size: 1.3rem;
             }
 
+            /* Show hamburger menu */
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                z-index: 1001;
+                padding: 8px;
+                min-width: 44px;
+                min-height: 44px;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                background: rgba(255, 255, 255, 0.8);
+                border: 2px solid transparent;
+            }
+
+            .menu-toggle:hover {
+                background: rgba(212, 175, 55, 0.1);
+                border-color: var(--accent-color);
+            }
+
+            .menu-toggle:active {
+                transform: scale(0.95);
+            }
+
+            .menu-toggle span {
+                display: block;
+                width: 28px;
+                height: 3px;
+                background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+                margin: 3px 0;
+                transition: all 0.3s ease;
+                border-radius: 3px;
+            }
+
+            .menu-toggle.active {
+                background: rgba(212, 175, 55, 0.2);
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(7px, 7px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            /* Mobile sidebar menu */
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                height: 100vh;
+                width: 75%;
+                max-width: 320px;
+                background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(250,249,246,0.98));
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 80px 20px 30px;
+                gap: 0;
+                box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                border-left: 3px solid var(--accent-color);
+                overflow-y: auto;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                margin: 0;
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            .nav-links.active li {
+                animation: slideIn 0.5s ease forwards;
+            }
+
+            .nav-links.active li:nth-child(1) { animation-delay: 0.1s; }
+            .nav-links.active li:nth-child(2) { animation-delay: 0.2s; }
+            .nav-links.active li:nth-child(3) { animation-delay: 0.3s; }
+            .nav-links.active li:nth-child(4) { animation-delay: 0.4s; }
+
+            @keyframes slideIn {
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .nav-links a {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 16px 24px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: var(--primary-color);
+                text-decoration: none;
+                border-radius: 12px;
+                margin: 6px 0;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .nav-links a::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 4px;
+                background: var(--accent-color);
+                transform: scaleY(0);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links a:hover,
+            .nav-links a:active {
+                background: rgba(212, 175, 55, 0.15);
+                color: var(--accent-color);
+                transform: translateX(8px);
+            }
+
+            .nav-links a:hover::before {
+                transform: scaleY(1);
+            }
+
             .hero {
                 background-attachment: scroll;
             }
