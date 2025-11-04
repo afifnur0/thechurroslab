@@ -1,0 +1,126 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   🍩 THE CHURROS LAB - SISTEM ORDER OTOMATIS                    ║
+║   Quick Start Guide                                             ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+📋 CHECKLIST SETUP (Ikuti urutan ini!)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: SETUP GOOGLE SHEETS (5 menit)
+□ Buka https://sheets.google.com
+□ Buat spreadsheet baru: "The Churros Lab - Orders"
+□ Buat header di baris 1:
+  Timestamp | Nama Pelanggan | No. WhatsApp | Menu | Jumlah | 
+  Metode | Alamat | Catatan | Status
+
+STEP 2: SETUP GOOGLE APPS SCRIPT (10 menit)
+□ Di Google Sheets, klik: Extensions → Apps Script
+□ Hapus semua kode default
+□ Copy paste kode dari file: google-apps-script.js
+□ Simpan dengan nama: "Churros Lab Order System"
+□ Klik: Deploy → New deployment → Web app
+□ Setting:
+  - Execute as: Me
+  - Who has access: Anyone
+□ Klik Deploy
+□ COPY URL deployment (simpan di notepad!)
+  Contoh: https://script.google.com/macros/s/AKfycbxxx.../exec
+
+STEP 3: DAFTAR FONNTE (10 menit)
+□ Buka https://fonnte.com
+□ Daftar akun baru
+□ Verifikasi email
+□ Connect WhatsApp (scan QR code)
+□ Tunggu status "Connected"
+□ Masuk ke menu API
+□ COPY API Key/Token (simpan di notepad!)
+
+STEP 4: UPDATE GOOGLE APPS SCRIPT (2 menit)
+□ Kembali ke Google Apps Script
+□ Baris 9: Ganti FONNTE_API_KEY dengan API key Anda
+□ Baris 102: Ganti nomor owner (opsional)
+□ Simpan (Ctrl+S)
+□ Deploy ulang:
+  - Deploy → Manage deployments
+  - Klik icon gear → Edit
+  - Version: New version
+  - Deploy
+
+STEP 5: UPDATE WEBSITE (2 menit)
+□ Buka file: index.html
+□ Cari baris 1988
+□ Ganti GOOGLE_SCRIPT_URL dengan URL deployment Anda
+□ Simpan file
+
+STEP 6: TEST SYSTEM (5 menit)
+□ Buka website di browser
+□ Scroll ke "Order Form"
+□ Isi form dengan data test
+□ Submit
+□ Cek:
+  ✓ Google Sheets: Data masuk?
+  ✓ WhatsApp: Pesan terkirim?
+  ✓ Alert sukses muncul?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ TROUBLESHOOTING
+
+MASALAH: WhatsApp tidak terkirim
+SOLUSI:
+  1. Cek API Key Fonnte sudah benar
+  2. Cek saldo/kuota Fonnte
+  3. Cek WhatsApp masih connected di dashboard Fonnte
+  4. Test API via Postman/curl dulu
+
+MASALAH: Data tidak masuk Google Sheets
+SOLUSI:
+  1. Cek URL deployment sudah benar di website
+  2. Cek permission Apps Script: "Anyone"
+  3. Lihat Logs di Apps Script: View → Logs
+  4. Coba deploy ulang
+
+MASALAH: Error CORS di browser console
+SOLUSI:
+  - Ini NORMAL! Data tetap terkirim
+  - Bisa diabaikan
+  - Karena mode: 'no-cors' di fetch
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💰 BIAYA
+
+Google Sheets:           GRATIS ✅
+Google Apps Script:      GRATIS ✅
+Website Hosting:         GRATIS ✅ (Vercel/Netlify)
+WhatsApp API (Fonnte):   Rp 50.000/bulan 💵
+
+TOTAL: Rp 50.000/bulan
+
+Paket Fonnte:
+• Starter: Rp 50.000 (500 pesan)
+• Basic: Rp 100.000 (1500 pesan)
+• Pro: Rp 200.000 (4000 pesan)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 DOKUMENTASI LENGKAP
+
+Baca file ini untuk detail lebih lanjut:
+→ SETUP-GUIDE.md (Panduan lengkap step by step)
+→ README-ORDER-SYSTEM.md (Overview sistem)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 SELAMAT! Sistem order otomatis Anda siap digunakan!
+
+Setiap kali ada pelanggan order:
+✓ Data otomatis tersimpan di Google Sheets
+✓ WhatsApp otomatis terkirim ke pelanggan
+✓ Owner bisa lihat semua pesanan di Sheets
+
+Happy Selling! 🍩✨
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

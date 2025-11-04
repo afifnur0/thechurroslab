@@ -1746,8 +1746,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#menu">Our Menu</a></li>
                 <li><a href="#features">Experience</a></li>
-                <li><a href="#order-form">Order Form</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#order-form">Order Now</a></li>
             </ul>
         </div>
     </nav>
@@ -1764,7 +1763,7 @@
                 <p class="hero-subtitle">Nikmati beragam varian churros dengan sentuhan modern dan inovatif untuk pengalaman dessert yang tak terlupakan.</p>
                 <div class="cta-group">
                     <a href="#menu" class="contact-button"><i class="fas fa-utensils"></i>Explore Our Menu</a>
-                    <a href="#contact" class="contact-button contact-button--outline"><i class="fab fa-whatsapp"></i>Order Now</a>
+                    <a href="#order-form" class="contact-button contact-button--outline"><i class="fab fa-whatsapp"></i>Order Now</a>
                 </div>
             </div>
         </div>
@@ -1832,12 +1831,12 @@
     <!-- Order Form Section -->
     <section class="order-form-section" id="order-form">
         <div class="form-container" data-aos="fade-up">
-            <h2 class="form-title">Order Form</h2>
+            <h2 class="form-title">Order Now</h2>
             <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Pesanan akan langsung dikirim ke WhatsApp kami!</p>
             
             <div class="form-info">
                 <i class="fas fa-info-circle"></i>
-                <strong>Info:</strong> Setelah submit, sistem akan membuka WhatsApp dengan pesan konfirmasi yang siap dikirim ke pelanggan. Anda sebagai owner tinggal klik kirim untuk mengirim auto-reply ke pelanggan.
+                <strong>Info:</strong> Setelah submit, WhatsApp akan terbuka dengan pesan konfirmasi yang sudah terisi otomatis. Anda tinggal klik <strong>KIRIM</strong> untuk mengirim ke pelanggan. <strong>100% GRATIS!</strong>
             </div>
 
             <form id="orderForm">
@@ -1896,33 +1895,12 @@
         </div>
     </section>
 
-    <section class="section contact" id="contact">
-        <h2 class="section-title" data-aos="fade-up">Experience The Extraordinary</h2>
-        <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
-            <p class="contact-text">Nikmati pengalaman bersantap dari churros kami. Chat Admin Sekarang!.</p>
-            <div class="admin-buttons">
-                <div class="admin-button-wrapper">
-                    <p class="admin-label"><i class="fas fa-headset"></i> Admin 1</p>
-                    <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20Aku%20Mau%20Nanya%2C%0A%20Dong!" class="contact-button admin-button" style="background: linear-gradient(45deg, var(--primary-color), #3E2723);">
-                        <i class="fab fa-whatsapp"></i> Chat Admin 1
-                    </a>
-                </div>
-                <div class="admin-button-wrapper">
-                    <p class="admin-label"><i class="fas fa-headset"></i> Admin 2</p>
-                    <a href="https://wa.me/6285173264426?text=Halo%20Admin%201%20Aku%20Mau%20Nanya%2C%0A%20Dong!" class="contact-button admin-button" style="background: linear-gradient(45deg, #3E2723, var(--accent-color));">
-                        <i class="fab fa-whatsapp"></i> Chat Admin 2
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="footer-links">
             <div class="social-links">
                 <a href="https://www.instagram.com/churros.lab/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i><span class="handle">@churros.lab</span></a>
             </div>
-            <a class="footer-cta" href="https://forms.gle/rn7zGge63AacY7kY6" target="_blank" rel="noopener noreferrer"><i class="fas fa-clipboard-list"></i> Pre-Order via Google Form</a>
+            <a class="footer-cta" href="#order-form"><i class="fas fa-shopping-cart"></i> Order Now</a>
         </div>
         <p class="copyright">&copy; 2025 The Churros Lab. All rights reserved.</p>
     </footer>
@@ -1981,8 +1959,11 @@
             }
         });
 
-        // Order Form Handler with WhatsApp Integration
+        // Order Form Handler - GRATIS 100% (Tanpa API!)
         const orderForm = document.getElementById('orderForm');
+        
+        // Nomor WhatsApp Owner - GANTI dengan nomor Anda
+        const OWNER_PHONE = '6285173264426'; // Format: 62xxx (tanpa +)
         
         if (orderForm) {
             orderForm.addEventListener('submit', function(e) {
@@ -2004,7 +1985,7 @@
                     return;
                 }
 
-                // Format phone number (remove leading 0 and add 62)
+                // Format phone number
                 let formattedPhone = phoneNumber.trim();
                 if (formattedPhone.startsWith('0')) {
                     formattedPhone = '62' + formattedPhone.substring(1);
@@ -2012,7 +1993,7 @@
                     formattedPhone = '62' + formattedPhone;
                 }
 
-                // Create auto-reply message from owner to customer
+                // Create message for customer (yang akan dikirim owner)
                 let customerMessage = `Halo *${customerName}*! 👋\n\n`;
                 customerMessage += `Terima kasih sudah memesan di *The Churros Lab*! 🍩✨\n\n`;
                 customerMessage += `📋 *Detail Pesanan Anda:*\n`;
@@ -2025,35 +2006,41 @@
                     customerMessage += `📍 Alamat: ${address}\n`;
                 }
                 
+                if (notes.trim()) {
+                    customerMessage += `📝 Catatan: ${notes}\n`;
+                }
+                
                 customerMessage += `━━━━━━━━━━━━━━━━\n\n`;
                 customerMessage += `⏳ Pesanan Anda sedang kami proses.\n`;
-                customerMessage += `Tim kami akan segera menghubungi Anda untuk konfirmasi.\n\n`;
+                customerMessage += `Tim kami akan segera menghubungi Anda untuk konfirmasi pembayaran.\n\n`;
                 customerMessage += `Terima kasih! 🙏\n`;
                 customerMessage += `*The Churros Lab Team*`;
 
-                // Encode message for URL
-                const encodedCustomerMessage = encodeURIComponent(customerMessage);
+                // Encode message
+                const encodedMessage = encodeURIComponent(customerMessage);
 
-                // Create WhatsApp URL
-                const customerWhatsAppURL = `https://wa.me/${formattedPhone}?text=${encodedCustomerMessage}`;
+                // Create WhatsApp URL - langsung ke nomor pelanggan
+                const whatsappURL = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
 
-                // Open WhatsApp to send auto-reply to customer first
-                window.open(customerWhatsAppURL, '_blank');
+                // Open WhatsApp
+                window.open(whatsappURL, '_blank');
 
-                // Show success message and instructions
+                // Show success message
                 setTimeout(() => {
-                    alert('✅ Form berhasil disubmit!\n\n' +
-                          '📱 WhatsApp telah dibuka untuk mengirim konfirmasi ke pelanggan.\n\n' +
+                    alert('✅ WhatsApp Terbuka!\n\n' +
+                          '📱 Pesan konfirmasi sudah terisi otomatis\n' +
+                          '👉 Tinggal klik KIRIM untuk mengirim ke pelanggan\n\n' +
                           '📋 Detail pesanan:\n' +
                           `• Nama: ${customerName}\n` +
+                          `• No. WA: ${phoneNumber}\n` +
                           `• Menu: ${menuItem}\n` +
                           `• Jumlah: ${quantity}\n` +
                           `• Metode: ${deliveryMethod}\n\n` +
-                          '✉️ Silakan kirim pesan konfirmasi ke pelanggan melalui WhatsApp yang sudah terbuka.');
+                          'Terima kasih! 🙏');
                     
                     // Reset form
                     orderForm.reset();
-                }, 800);
+                }, 500);
             });
 
             // Auto-fill phone number validation

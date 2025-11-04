@@ -1,0 +1,168 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   🍩 SETUP SUPER SIMPLE - 3 LANGKAH SAJA!                       ║
+║   The Churros Lab - WhatsApp Otomatis                           ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+⏱️ WAKTU SETUP: 10 MENIT
+💰 BIAYA: Rp 50.000/bulan (WhatsApp API)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 LANGKAH 1: DAFTAR FONNTE (5 menit)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka browser, ketik: https://fonnte.com
+2. Klik "Daftar" / "Sign Up"
+3. Isi data:
+   - Email
+   - Password
+   - Nama
+4. Cek email, klik link verifikasi
+5. Login ke dashboard Fonnte
+6. Klik "Connect WhatsApp"
+7. Scan QR Code dengan WhatsApp Anda
+8. Tunggu sampai status: "Connected" ✅
+9. Klik menu "API" di sidebar
+10. COPY API Key/Token yang muncul
+    Contoh: abc123xyz456def789
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 LANGKAH 2: UPDATE WEBSITE (3 menit)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka file: index.html
+2. Tekan Ctrl+F (Find)
+3. Cari: GANTI_DENGAN_API_KEY_FONNTE_ANDA
+4. Ganti dengan API Key Anda (yang sudah di-copy tadi)
+   
+   Dari:
+   const FONNTE_API_KEY = 'GANTI_DENGAN_API_KEY_FONNTE_ANDA';
+   
+   Jadi:
+   const FONNTE_API_KEY = 'abc123xyz456def789';
+
+5. Simpan file (Ctrl+S)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 LANGKAH 3: TEST SYSTEM (2 menit)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka website di browser
+2. Scroll ke bagian "Order Form"
+3. Isi form dengan data test:
+   - Nama: Test Customer
+   - No. WA: 08123456789 (nomor WA Anda sendiri untuk test)
+   - Menu: Pilih salah satu
+   - Jumlah: 1
+   - Metode: Pickup
+4. Klik "Kirim Pesanan via WhatsApp"
+5. Tunggu loading...
+6. Cek WhatsApp Anda!
+
+✅ Jika berhasil: Anda akan terima WhatsApp otomatis
+❌ Jika gagal: Lihat troubleshooting di bawah
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 SELESAI! SISTEM SUDAH JALAN!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Sekarang setiap kali ada pelanggan order:
+✓ Isi form di website
+✓ Klik submit
+✓ WhatsApp OTOMATIS terkirim ke pelanggan
+✓ TANPA perlu klik apapun lagi!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MASALAH 1: WhatsApp tidak terkirim
+SOLUSI:
+□ Cek API Key sudah benar? (tidak ada spasi, tidak ada kutip)
+□ Cek WhatsApp masih connected di dashboard Fonnte?
+□ Cek saldo/kuota Fonnte masih ada?
+□ Test kirim manual dari dashboard Fonnte dulu
+
+MASALAH 2: Error CORS di console browser
+SOLUSI:
+□ Ini NORMAL untuk Fonnte API
+□ Solusi: Deploy website ke hosting (Vercel/Netlify)
+□ Atau pakai extension "CORS Unblock" di Chrome
+
+MASALAH 3: API Key tidak diterima
+SOLUSI:
+□ Pastikan tidak ada spasi sebelum/sesudah API Key
+□ Pastikan dalam tanda kutip: 'abc123xyz'
+□ Coba copy ulang dari dashboard Fonnte
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💰 BIAYA FONNTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Paket Starter:  Rp 50.000/bulan  → 500 pesan
+Paket Basic:    Rp 100.000/bulan → 1500 pesan
+Paket Pro:      Rp 200.000/bulan → 4000 pesan
+
+Pilih sesuai kebutuhan Anda!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 CONTOH PESAN YANG AKAN DIKIRIM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Halo *John Doe*! 👋
+
+Terima kasih sudah memesan di *The Churros Lab*! 🍩✨
+
+📋 *Detail Pesanan Anda:*
+━━━━━━━━━━━━━━━━
+🍩 Menu: Classic Gold - Rp 35.000
+📦 Jumlah: 2
+🚚 Metode: Delivery
+📍 Alamat: Jl. Contoh No. 123
+━━━━━━━━━━━━━━━━
+
+⏳ Pesanan Anda sedang kami proses.
+Tim kami akan segera menghubungi Anda untuk konfirmasi.
+
+Terima kasih! 🙏
+*The Churros Lab Team*
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📞 SUPPORT FONNTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Website: https://fonnte.com
+WhatsApp: 0857-7002-6902
+Email: support@fonnte.com
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CHECKLIST SETUP
+
+□ Daftar Fonnte
+□ Connect WhatsApp
+□ Copy API Key
+□ Paste API Key ke index.html
+□ Simpan file
+□ Test kirim WhatsApp
+□ Berhasil!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 SELAMAT! SISTEM OTOMATIS ANDA SUDAH JALAN!
+
+Sekarang tinggal promosikan website Anda dan tunggu order masuk!
+WhatsApp akan otomatis terkirim ke setiap pelanggan! 🚀
+
+Happy Selling! 🍩✨
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
