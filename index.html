@@ -1832,11 +1832,11 @@
     <section class="order-form-section" id="order-form">
         <div class="form-container" data-aos="fade-up">
             <h2 class="form-title">Order Now</h2>
-            <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Pesanan akan langsung dikirim ke WhatsApp kami!</p>
+            <p class="form-subtitle">Isi form di bawah ini untuk memesan churros favorit Anda. Kami akan menghubungi Anda via WhatsApp untuk konfirmasi!</p>
             
             <div class="form-info">
                 <i class="fas fa-info-circle"></i>
-                <strong>Info:</strong> Setelah submit, WhatsApp akan terbuka dengan pesan konfirmasi yang sudah terisi otomatis. Anda tinggal klik <strong>KIRIM</strong> untuk mengirim ke pelanggan. <strong>100% GRATIS!</strong>
+                <strong>Info:</strong> Setelah submit, kami akan menghubungi Anda via WhatsApp untuk konfirmasi pesanan. Pastikan nomor WhatsApp yang Anda masukkan aktif!
             </div>
 
             <form id="orderForm">
@@ -1985,58 +1985,45 @@
                     return;
                 }
 
-                // Format phone number
-                let formattedPhone = phoneNumber.trim();
-                if (formattedPhone.startsWith('0')) {
-                    formattedPhone = '62' + formattedPhone.substring(1);
-                } else if (!formattedPhone.startsWith('62')) {
-                    formattedPhone = '62' + formattedPhone;
-                }
-
-                // Create message for customer (yang akan dikirim owner)
-                let customerMessage = `Halo *${customerName}*! 👋\n\n`;
-                customerMessage += `Terima kasih sudah memesan di *The Churros Lab*! 🍩✨\n\n`;
-                customerMessage += `📋 *Detail Pesanan Anda:*\n`;
-                customerMessage += `━━━━━━━━━━━━━━━━\n`;
-                customerMessage += `🍩 Menu: ${menuItem}\n`;
-                customerMessage += `📦 Jumlah: ${quantity}\n`;
-                customerMessage += `🚚 Metode: ${deliveryMethod}\n`;
+                // Create message for owner (notifikasi pesanan baru)
+                let ownerMessage = `🎉 *PESANAN BARU - The Churros Lab* 🎉\n\n`;
+                ownerMessage += `👤 *Nama Pelanggan:* ${customerName}\n`;
+                ownerMessage += `📱 *No. WhatsApp:* ${phoneNumber}\n`;
+                ownerMessage += `🍩 *Menu:* ${menuItem}\n`;
+                ownerMessage += `📦 *Jumlah:* ${quantity}\n`;
+                ownerMessage += `🚚 *Metode:* ${deliveryMethod}\n`;
                 
                 if (address.trim()) {
-                    customerMessage += `📍 Alamat: ${address}\n`;
+                    ownerMessage += `📍 *Alamat:* ${address}\n`;
                 }
                 
                 if (notes.trim()) {
-                    customerMessage += `📝 Catatan: ${notes}\n`;
+                    ownerMessage += `📝 *Catatan:* ${notes}\n`;
                 }
                 
-                customerMessage += `━━━━━━━━━━━━━━━━\n\n`;
-                customerMessage += `⏳ Pesanan Anda sedang kami proses.\n`;
-                customerMessage += `Tim kami akan segera menghubungi Anda untuk konfirmasi pembayaran.\n\n`;
-                customerMessage += `Terima kasih! 🙏\n`;
-                customerMessage += `*The Churros Lab Team*`;
+                ownerMessage += `\n⏰ *Waktu Order:* ${new Date().toLocaleString('id-ID')}\n`;
+                ownerMessage += `\n_Segera hubungi pelanggan untuk konfirmasi!_`;
 
                 // Encode message
-                const encodedMessage = encodeURIComponent(customerMessage);
+                const encodedMessage = encodeURIComponent(ownerMessage);
 
-                // Create WhatsApp URL - langsung ke nomor pelanggan
-                const whatsappURL = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+                // Create WhatsApp URL - kirim ke owner
+                const whatsappURL = `https://wa.me/${OWNER_PHONE}?text=${encodedMessage}`;
 
                 // Open WhatsApp
                 window.open(whatsappURL, '_blank');
 
-                // Show success message
+                // Show success message to customer
                 setTimeout(() => {
-                    alert('✅ WhatsApp Terbuka!\n\n' +
-                          '📱 Pesan konfirmasi sudah terisi otomatis\n' +
-                          '👉 Tinggal klik KIRIM untuk mengirim ke pelanggan\n\n' +
-                          '📋 Detail pesanan:\n' +
+                    alert('✅ Pesanan Berhasil Dikirim!\n\n' +
+                          '📱 Tim kami akan segera menghubungi Anda via WhatsApp untuk konfirmasi pesanan.\n\n' +
+                          '📋 Detail pesanan Anda:\n' +
                           `• Nama: ${customerName}\n` +
                           `• No. WA: ${phoneNumber}\n` +
                           `• Menu: ${menuItem}\n` +
                           `• Jumlah: ${quantity}\n` +
                           `• Metode: ${deliveryMethod}\n\n` +
-                          'Terima kasih! 🙏');
+                          'Terima kasih sudah memesan! 🙏');
                     
                     // Reset form
                     orderForm.reset();
