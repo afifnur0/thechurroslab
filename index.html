@@ -1837,7 +1837,7 @@
             
             <div class="form-info">
                 <i class="fas fa-info-circle"></i>
-                <strong>Info:</strong> Setelah submit, Anda akan diarahkan ke WhatsApp untuk konfirmasi pesanan. Kami juga akan mengirimkan pesan otomatis ke nomor Anda.
+                <strong>Info:</strong> Setelah submit, sistem akan membuka WhatsApp dengan pesan konfirmasi yang siap dikirim ke pelanggan. Anda sebagai owner tinggal klik kirim untuk mengirim auto-reply ke pelanggan.
             </div>
 
             <form id="orderForm">
@@ -2012,29 +2012,7 @@
                     formattedPhone = '62' + formattedPhone;
                 }
 
-                // Owner's WhatsApp number (ganti dengan nomor owner yang sebenarnya)
-                const ownerPhone = '6285173264426'; // Ganti dengan nomor owner
-
-                // Create message for owner
-                let ownerMessage = `🎉 *PESANAN BARU - The Churros Lab* 🎉\n\n`;
-                ownerMessage += `👤 *Nama:* ${customerName}\n`;
-                ownerMessage += `📱 *No. WhatsApp:* ${phoneNumber}\n`;
-                ownerMessage += `🍩 *Menu:* ${menuItem}\n`;
-                ownerMessage += `📦 *Jumlah:* ${quantity}\n`;
-                ownerMessage += `🚚 *Metode:* ${deliveryMethod}\n`;
-                
-                if (address.trim()) {
-                    ownerMessage += `📍 *Alamat:* ${address}\n`;
-                }
-                
-                if (notes.trim()) {
-                    ownerMessage += `📝 *Catatan:* ${notes}\n`;
-                }
-                
-                ownerMessage += `\n⏰ *Waktu Order:* ${new Date().toLocaleString('id-ID')}\n`;
-                ownerMessage += `\n_Mohon segera konfirmasi pesanan ini_`;
-
-                // Create auto-reply message for customer
+                // Create auto-reply message from owner to customer
                 let customerMessage = `Halo *${customerName}*! 👋\n\n`;
                 customerMessage += `Terima kasih sudah memesan di *The Churros Lab*! 🍩✨\n\n`;
                 customerMessage += `📋 *Detail Pesanan Anda:*\n`;
@@ -2053,40 +2031,29 @@
                 customerMessage += `Terima kasih! 🙏\n`;
                 customerMessage += `*The Churros Lab Team*`;
 
-                // Encode messages for URL
-                const encodedOwnerMessage = encodeURIComponent(ownerMessage);
+                // Encode message for URL
                 const encodedCustomerMessage = encodeURIComponent(customerMessage);
 
-                // Create WhatsApp URLs
-                const ownerWhatsAppURL = `https://wa.me/${ownerPhone}?text=${encodedOwnerMessage}`;
+                // Create WhatsApp URL
                 const customerWhatsAppURL = `https://wa.me/${formattedPhone}?text=${encodedCustomerMessage}`;
 
-                // Open owner WhatsApp first
-                window.open(ownerWhatsAppURL, '_blank');
+                // Open WhatsApp to send auto-reply to customer first
+                window.open(customerWhatsAppURL, '_blank');
 
-                // Show confirmation and option to send auto-reply to customer
+                // Show success message and instructions
                 setTimeout(() => {
-                    const sendToCustomer = confirm(
-                        `Pesanan berhasil dikirim ke admin!\n\n` +
-                        `Apakah Anda ingin mengirim pesan konfirmasi otomatis ke pelanggan (${customerName} - ${phoneNumber})?\n\n` +
-                        `Klik OK untuk mengirim auto-reply ke pelanggan.`
-                    );
-
-                    if (sendToCustomer) {
-                        window.open(customerWhatsAppURL, '_blank');
-                        
-                        // Show success message
-                        setTimeout(() => {
-                            alert('✅ Pesanan telah dikirim!\n\n' +
-                                  '1. Pesan pesanan dikirim ke admin\n' +
-                                  '2. Auto-reply dikirim ke pelanggan\n\n' +
-                                  'Silakan cek WhatsApp Anda untuk melanjutkan.');
-                        }, 500);
-                    }
-
+                    alert('✅ Form berhasil disubmit!\n\n' +
+                          '📱 WhatsApp telah dibuka untuk mengirim konfirmasi ke pelanggan.\n\n' +
+                          '📋 Detail pesanan:\n' +
+                          `• Nama: ${customerName}\n` +
+                          `• Menu: ${menuItem}\n` +
+                          `• Jumlah: ${quantity}\n` +
+                          `• Metode: ${deliveryMethod}\n\n` +
+                          '✉️ Silakan kirim pesan konfirmasi ke pelanggan melalui WhatsApp yang sudah terbuka.');
+                    
                     // Reset form
                     orderForm.reset();
-                }, 1000);
+                }, 800);
             });
 
             // Auto-fill phone number validation
