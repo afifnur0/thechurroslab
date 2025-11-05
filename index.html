@@ -797,10 +797,27 @@
 
         /* Footer */
         .footer {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a1a1a 100%);
             color: white;
             text-align: center;
             padding: clamp(20px, 5vw, 40px) clamp(20px, 5vw, 50px);
+            box-shadow: 0 -10px 40px rgba(212, 175, 55, 0.3), 
+                        0 -5px 20px rgba(0, 0, 0, 0.4),
+                        inset 0 2px 0 rgba(212, 175, 55, 0.2),
+                        inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+            border-top: 2px solid rgba(212, 175, 55, 0.4);
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            opacity: 0.6;
         }
 
         .social-links {
@@ -1937,9 +1954,9 @@
                 <p>Churros dibuat dari adonan sederhana lalu dicetak bergerigi dan digoreng hingga keemasan. Gula kayu manis memberi aroma hangat yang khas, sementara tekstur luar yang crunchy berpadu dengan bagian dalam yang lembut.</p>
                 <p>Untuk pengalaman lebih kaya, nikmati dengan pilihan saus celup favorit: cokelat Belgia, karamel asin, vanilla cream, atau hazelnut.</p>
                 <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> Gula kayu manis premium</li>
-                    <li><i class="fas fa-check-circle"></i> Saus cokelat Belgia 72%</li>
-                    <li><i class="fas fa-check-circle"></i> Digoreng fresh to order</li>
+                    <li><i class="fas fa-check-circle"></i> Bahan berkualitas</li>
+                    <li><i class="fas fa-check-circle"></i> Rasa khas</li>
+                    <li><i class="fas fa-check-circle"></i> Fresh to order</li>
                     <li><i class="fas fa-check-circle"></i> Cocok untuk semua momen</li>
                 </ul>
             </div>
@@ -1948,14 +1965,14 @@
 
     <section class="section section--dark" id="menu">
         <h2 class="section-title" data-aos="fade-up">Our Signature Collection</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">Pilihan menu andalan kami dengan bahan premium dan cita rasa khas The Churros Lab.</p>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="50">Pilihan rasa andalan kami dengan bahan premium dan cita rasa khas The Churros Lab.</p>
         <div class="menu-grid">
             <div class="menu-item" data-aos="fade-up" data-aos-delay="100">
                 <img src="./images/churros 2.jpeg" alt="Classic Gold" class="menu-image">
                 <div class="menu-content">
                     <h3 class="menu-name">Original</h3>
                     <p class="menu-description">Churros klasik yang dibalut dengan campuran gula kayu manis premium, disajikan dengan saus cokelat Belgium 72% yang mewah.</p>
-                    <p class="menu-price">Rp 35.000</p>
+                    <p class="menu-price">Rp 12.000</p>
                 </div>
             </div>
             <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
@@ -1963,7 +1980,7 @@
                 <div class="menu-content">
                     <h3 class="menu-name">Manis</h3>
                     <p class="menu-description">Churros yang diisi dengan Nutella premium, ditaburi bubuk kakao, dan disajikan dengan saus hazelnut homemade.</p>
-                    <p class="menu-price">Rp 45.000</p>
+                    <p class="menu-price">Rp 15.000</p>
                 </div>
             </div>
             <div class="menu-item" data-aos="fade-up" data-aos-delay="300">
@@ -1971,7 +1988,7 @@
                 <div class="menu-content">
                     <h3 class="menu-name">Asin</h3>
                     <p class="menu-description">Churros dengan lapisan karamel garam laut Maldon, disajikan dengan saus vanilla bourbon dan taburan kacang almond.</p>
-                    <p class="menu-price">Rp 40.000</p>
+                    <p class="menu-price">Rp 16.000</p>
                 </div>
             </div>
         </div>
