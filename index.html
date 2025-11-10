@@ -1793,30 +1793,76 @@
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .flavor-select {
-            width: 100%;
+        .flavor-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .flavor-option-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding: 10px 14px;
-            border: 2px solid rgba(0,0,0,0.1);
+            background: #fafafa;
+            border: 2px solid rgba(0,0,0,0.08);
             border-radius: 8px;
-            font-size: 0.95rem;
-            background: white;
-            color: var(--text-color);
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .flavor-select:focus {
-            outline: none;
+        .flavor-option-item:hover {
+            background: white;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
         }
 
-        .flavor-select:disabled {
-            background: #f0f0f0;
+        .flavor-option-item.selected {
+            background: rgba(212, 175, 55, 0.08);
+            border-color: var(--accent-color);
+        }
+
+        .flavor-option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .flavor-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .flavor-option-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .flavor-quantity {
+            width: 60px;
+            padding: 6px 10px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .flavor-quantity:enabled {
+            border-color: var(--accent-color);
+            background: white;
+        }
+
+        .flavor-quantity:disabled {
+            background: #e8e8e8;
             cursor: not-allowed;
+            opacity: 0.6;
         }
 
         .total-price-display {
@@ -2032,14 +2078,6 @@
                     <p class="menu-price">Rp 7.000</p>
                 </div>
             </div>
-            <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
-                <img src="./images/churros 3.jpeg" alt="Manis Churros" class="menu-image">
-                <div class="menu-content">
-                    <h3 class="menu-name">Manis (Coklat, Matcha, Tiramisu)</h3>
-                    <p class="menu-description">Churros dengan pilihan topping premium: Coklat yang lezat, Matcha yang creamy, dan Tiramisu yang kaya rasa.</p>
-                    <p class="menu-price">Rp 10.000</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -2072,33 +2110,42 @@
                     <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">Pilih menu dan tentukan jumlah pesanan</p>
                     
                     <div class="menu-checkbox-group">
-                        <label class="menu-checkbox-item">
-                            <input type="checkbox" name="menuItem" value="Original ( Gula Tabur )" data-price="7000" class="menu-checkbox">
-                            <span class="menu-checkbox-label">
-                                <strong>Original ( Gula Tabur )</strong> - Rp 7.000
-                            </span>
-                            <input type="number" class="menu-quantity" min="1" value="1" disabled>
-                        </label>
-                        
-                        <!-- Manis Menu -->
+                        <!-- Original Menu with Sauce Options -->
                         <div class="menu-checkbox-wrapper">
                             <label class="menu-checkbox-item">
-                                <input type="checkbox" name="menuItem" value="Manis" data-price="10000" class="menu-checkbox" id="manisCheckbox">
+                                <input type="checkbox" name="menuItem" value="Original ( Gula Tabur )" data-price="7000" class="menu-checkbox" id="originalCheckbox">
                                 <span class="menu-checkbox-label">
-                                    <strong>Manis (Coklat, Matcha, Tiramisu)</strong> - Rp 10.000
+                                    <strong>Original ( Gula Tabur )</strong> - Rp 7.000
                                 </span>
                                 <input type="number" class="menu-quantity" min="1" value="1" disabled>
                             </label>
-                            <div class="flavor-addon" id="manisAddon">
+                            <div class="flavor-addon" id="sauceAddon">
                                 <label class="flavor-addon-label">
-                                    <i class="fas fa-ice-cream"></i> Pilih Varian Rasa:
+                                    <i class="fas fa-plus-circle"></i> Tambah Saus (Opsional) - Rp 3.000/saus:
                                 </label>
-                                <select class="flavor-select" id="manisSelect" disabled>
-                                    <option value="">-- Pilih Rasa --</option>
-                                    <option value="Coklat">🍫 Coklat</option>
-                                    <option value="Matcha">🍵 Matcha</option>
-                                    <option value="Tiramisu">☕ Tiramisu</option>
-                                </select>
+                                <div class="flavor-options">
+                                    <div class="flavor-option-item">
+                                        <div class="flavor-option-left">
+                                            <input type="checkbox" class="sauce-checkbox" id="coklatSauce" data-sauce="Coklat" data-price="3000">
+                                            <label for="coklatSauce" class="flavor-option-label">🍫 Saus Coklat</label>
+                                        </div>
+                                        <input type="number" class="flavor-quantity" id="coklatSauceQty" min="1" value="1" disabled>
+                                    </div>
+                                    <div class="flavor-option-item">
+                                        <div class="flavor-option-left">
+                                            <input type="checkbox" class="sauce-checkbox" id="matchaSauce" data-sauce="Matcha" data-price="3000">
+                                            <label for="matchaSauce" class="flavor-option-label">🍵 Saus Matcha</label>
+                                        </div>
+                                        <input type="number" class="flavor-quantity" id="matchaSauceQty" min="1" value="1" disabled>
+                                    </div>
+                                    <div class="flavor-option-item">
+                                        <div class="flavor-option-left">
+                                            <input type="checkbox" class="sauce-checkbox" id="tiramisuSauce" data-sauce="Tiramisu" data-price="3000">
+                                            <label for="tiramisuSauce" class="flavor-option-label">☕ Saus Tiramisu</label>
+                                        </div>
+                                        <input type="number" class="flavor-quantity" id="tiramisuSauceQty" min="1" value="1" disabled>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -2247,21 +2294,11 @@
 
                 allCheckboxes.forEach((checkbox, index) => {
                     if (checkbox.checked) {
-                        let menuName = checkbox.value;
+                        const menuName = checkbox.value;
                         const price = parseInt(checkbox.dataset.price);
                         const quantity = parseInt(allQuantityInputs[index].value) || 1;
                         const subtotal = price * quantity;
                         totalPrice += subtotal;
-                        
-                        // Add flavor variant if Manis is selected
-                        if (checkbox.id === 'manisCheckbox') {
-                            const selectedFlavor = manisSelect.value;
-                            if (!selectedFlavor) {
-                                alert('Mohon pilih varian rasa untuk menu Manis!');
-                                return;
-                            }
-                            menuName = `Manis - ${selectedFlavor}`;
-                        }
                         
                         selectedMenus.push({
                             name: menuName,
@@ -2269,6 +2306,26 @@
                             quantity: quantity,
                             subtotal: subtotal
                         });
+                        
+                        // Handle sauce addons for Original menu
+                        if (checkbox.id === 'originalCheckbox') {
+                            sauceCheckboxes.forEach(sauceCb => {
+                                if (sauceCb.checked) {
+                                    const sauceName = sauceCb.dataset.sauce;
+                                    const saucePrice = parseInt(sauceCb.dataset.price);
+                                    const sauceQty = parseInt(sauceQuantities[sauceName.toLowerCase()].value) || 1;
+                                    const sauceSubtotal = saucePrice * sauceQty;
+                                    totalPrice += sauceSubtotal;
+                                    
+                                    selectedMenus.push({
+                                        name: `  + Saus ${sauceName}`,
+                                        price: saucePrice,
+                                        quantity: sauceQty,
+                                        subtotal: sauceSubtotal
+                                    });
+                                }
+                            });
+                        }
                     }
                 });
 
@@ -2328,11 +2385,18 @@
                         input.disabled = true;
                         input.value = 1;
                     });
-                    // Reset manis addon
-                    if (manisAddon && manisSelect) {
-                        manisAddon.classList.remove('active');
-                        manisSelect.disabled = true;
-                        manisSelect.value = '';
+                    // Reset sauce addon
+                    if (sauceAddon) {
+                        sauceAddon.classList.remove('active');
+                        sauceCheckboxes.forEach(cb => {
+                            cb.checked = false;
+                            const parent = cb.closest('.flavor-option-item');
+                            parent.classList.remove('selected');
+                        });
+                        Object.values(sauceQuantities).forEach(qty => {
+                            qty.disabled = true;
+                            qty.value = 1;
+                        });
                     }
                     // Reset total price
                     document.getElementById('totalPrice').textContent = 'Rp 0';
@@ -2343,35 +2407,77 @@
             const menuCheckboxes = document.querySelectorAll('.menu-checkbox');
             const quantityInputs = document.querySelectorAll('.menu-quantity');
             
-            // Manis menu elements
-            const manisCheckbox = document.getElementById('manisCheckbox');
-            const manisAddon = document.getElementById('manisAddon');
-            const manisSelect = document.getElementById('manisSelect');
+            // Original menu with sauce options
+            const originalCheckbox = document.getElementById('originalCheckbox');
+            const sauceAddon = document.getElementById('sauceAddon');
+            
+            // Sauce checkboxes and quantities
+            const sauceCheckboxes = document.querySelectorAll('.sauce-checkbox');
+            const sauceQuantities = {
+                coklat: document.getElementById('coklatSauceQty'),
+                matcha: document.getElementById('matchaSauceQty'),
+                tiramisu: document.getElementById('tiramisuSauceQty')
+            };
             
             menuCheckboxes.forEach((checkbox, index) => {
                 checkbox.addEventListener('change', function() {
                     const quantityInput = quantityInputs[index];
                     if (this.checked) {
-                        quantityInput.disabled = false;
+                        if (quantityInput) {
+                            quantityInput.disabled = false;
+                        }
                         
-                        // Show flavor addon if Manis is selected
-                        if (this.id === 'manisCheckbox') {
-                            manisAddon.classList.add('active');
-                            manisSelect.disabled = false;
+                        // Show sauce addon if Original is selected
+                        if (this.id === 'originalCheckbox') {
+                            sauceAddon.classList.add('active');
                         }
                     } else {
-                        quantityInput.disabled = true;
-                        quantityInput.value = 1;
+                        if (quantityInput) {
+                            quantityInput.disabled = true;
+                            quantityInput.value = 1;
+                        }
                         
-                        // Hide flavor addon if Manis is unchecked
-                        if (this.id === 'manisCheckbox') {
-                            manisAddon.classList.remove('active');
-                            manisSelect.disabled = true;
-                            manisSelect.value = '';
+                        // Hide sauce addon if Original is unchecked
+                        if (this.id === 'originalCheckbox') {
+                            sauceAddon.classList.remove('active');
+                            // Reset all sauce selections
+                            sauceCheckboxes.forEach(cb => {
+                                cb.checked = false;
+                                const parent = cb.closest('.flavor-option-item');
+                                parent.classList.remove('selected');
+                            });
+                            Object.values(sauceQuantities).forEach(qty => {
+                                qty.disabled = true;
+                                qty.value = 1;
+                            });
                         }
                     }
                     calculateTotal();
                 });
+            });
+            
+            // Handle sauce checkbox changes
+            sauceCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const sauceName = this.dataset.sauce.toLowerCase();
+                    const qtyInput = sauceQuantities[sauceName];
+                    const parent = this.closest('.flavor-option-item');
+                    
+                    if (this.checked) {
+                        qtyInput.disabled = false;
+                        parent.classList.add('selected');
+                    } else {
+                        qtyInput.disabled = true;
+                        qtyInput.value = 1;
+                        parent.classList.remove('selected');
+                    }
+                    calculateTotal();
+                });
+            });
+            
+            // Handle sauce quantity changes
+            Object.values(sauceQuantities).forEach(input => {
+                input.addEventListener('input', calculateTotal);
             });
 
             // Calculate total when quantity changes
@@ -2387,6 +2493,18 @@
                         const price = parseInt(checkbox.dataset.price);
                         const quantity = parseInt(quantityInputs[index].value) || 1;
                         total += price * quantity;
+                        
+                        // Add sauce prices for Original menu
+                        if (checkbox.id === 'originalCheckbox') {
+                            sauceCheckboxes.forEach(sauceCb => {
+                                if (sauceCb.checked) {
+                                    const saucePrice = parseInt(sauceCb.dataset.price);
+                                    const sauceName = sauceCb.dataset.sauce.toLowerCase();
+                                    const sauceQty = parseInt(sauceQuantities[sauceName].value) || 1;
+                                    total += saucePrice * sauceQty;
+                                }
+                            });
+                        }
                     }
                 });
                 
