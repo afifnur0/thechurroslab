@@ -1762,6 +1762,63 @@
             cursor: not-allowed;
         }
 
+        /* Addon Flavor Selection */
+        .flavor-addon {
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .flavor-addon.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .flavor-addon-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .flavor-select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .flavor-select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        .flavor-select:disabled {
+            background: #f0f0f0;
+            cursor: not-allowed;
+        }
+
         .total-price-display {
             margin-top: 20px;
             padding: 18px 24px;
@@ -1976,7 +2033,7 @@
                 </div>
             </div>
             <div class="menu-item" data-aos="fade-up" data-aos-delay="200">
-                <img src="./images/churros 3.jpeg" alt="Nutella Supreme" class="menu-image">
+                <img src="./images/churros 3.jpeg" alt="Manis Churros" class="menu-image">
                 <div class="menu-content">
                     <h3 class="menu-name">Manis (Coklat, Matcha, Tiramisu)</h3>
                     <p class="menu-description">Churros dengan pilihan topping premium: Coklat yang lezat, Matcha yang creamy, dan Tiramisu yang kaya rasa.</p>
@@ -2023,13 +2080,27 @@
                             <input type="number" class="menu-quantity" min="1" value="1" disabled>
                         </label>
                         
-                        <label class="menu-checkbox-item">
-                            <input type="checkbox" name="menuItem" value="Manis (Coklat, Matcha, Tiramisu)" data-price="10000" class="menu-checkbox">
-                            <span class="menu-checkbox-label">
-                                <strong>Manis (Coklat, Matcha, Tiramisu)</strong> - Rp 10.000
-                            </span>
-                            <input type="number" class="menu-quantity" min="1" value="1" disabled>
-                        </label>
+                        <!-- Manis Menu -->
+                        <div class="menu-checkbox-wrapper">
+                            <label class="menu-checkbox-item">
+                                <input type="checkbox" name="menuItem" value="Manis" data-price="10000" class="menu-checkbox" id="manisCheckbox">
+                                <span class="menu-checkbox-label">
+                                    <strong>Manis (Coklat, Matcha, Tiramisu)</strong> - Rp 10.000
+                                </span>
+                                <input type="number" class="menu-quantity" min="1" value="1" disabled>
+                            </label>
+                            <div class="flavor-addon" id="manisAddon">
+                                <label class="flavor-addon-label">
+                                    <i class="fas fa-ice-cream"></i> Pilih Varian Rasa:
+                                </label>
+                                <select class="flavor-select" id="manisSelect" disabled>
+                                    <option value="">-- Pilih Rasa --</option>
+                                    <option value="Coklat">🍫 Coklat</option>
+                                    <option value="Matcha">🍵 Matcha</option>
+                                    <option value="Tiramisu">☕ Tiramisu</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="total-price-display">
@@ -2176,11 +2247,21 @@
 
                 allCheckboxes.forEach((checkbox, index) => {
                     if (checkbox.checked) {
-                        const menuName = checkbox.value;
+                        let menuName = checkbox.value;
                         const price = parseInt(checkbox.dataset.price);
                         const quantity = parseInt(allQuantityInputs[index].value) || 1;
                         const subtotal = price * quantity;
                         totalPrice += subtotal;
+                        
+                        // Add flavor variant if Manis is selected
+                        if (checkbox.id === 'manisCheckbox') {
+                            const selectedFlavor = manisSelect.value;
+                            if (!selectedFlavor) {
+                                alert('Mohon pilih varian rasa untuk menu Manis!');
+                                return;
+                            }
+                            menuName = `Manis - ${selectedFlavor}`;
+                        }
                         
                         selectedMenus.push({
                             name: menuName,
@@ -2247,6 +2328,12 @@
                         input.disabled = true;
                         input.value = 1;
                     });
+                    // Reset manis addon
+                    if (manisAddon && manisSelect) {
+                        manisAddon.classList.remove('active');
+                        manisSelect.disabled = true;
+                        manisSelect.value = '';
+                    }
                     // Reset total price
                     document.getElementById('totalPrice').textContent = 'Rp 0';
                 }, 1000);
@@ -2256,14 +2343,32 @@
             const menuCheckboxes = document.querySelectorAll('.menu-checkbox');
             const quantityInputs = document.querySelectorAll('.menu-quantity');
             
+            // Manis menu elements
+            const manisCheckbox = document.getElementById('manisCheckbox');
+            const manisAddon = document.getElementById('manisAddon');
+            const manisSelect = document.getElementById('manisSelect');
+            
             menuCheckboxes.forEach((checkbox, index) => {
                 checkbox.addEventListener('change', function() {
                     const quantityInput = quantityInputs[index];
                     if (this.checked) {
                         quantityInput.disabled = false;
+                        
+                        // Show flavor addon if Manis is selected
+                        if (this.id === 'manisCheckbox') {
+                            manisAddon.classList.add('active');
+                            manisSelect.disabled = false;
+                        }
                     } else {
                         quantityInput.disabled = true;
                         quantityInput.value = 1;
+                        
+                        // Hide flavor addon if Manis is unchecked
+                        if (this.id === 'manisCheckbox') {
+                            manisAddon.classList.remove('active');
+                            manisSelect.disabled = true;
+                            manisSelect.value = '';
+                        }
                     }
                     calculateTotal();
                 });
